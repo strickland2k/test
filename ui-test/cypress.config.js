@@ -22,10 +22,10 @@ module.exports = defineConfig({
         "openMode": 1
       },
 
-    setupNodeEvents(on, config) {
-      registerDataSession(on, config)
-      require('@cypress/grep/src/plugin')(config)
-      return config
-    },
+    // setupNodeEvents(on, config) {
+    //   registerDataSession(on, config)
+    //   require('@cypress/grep/src/plugin')(config)
+    //   return config
+    // },
   },
 });
