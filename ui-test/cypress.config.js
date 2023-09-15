@@ -15,7 +15,7 @@ module.exports = defineConfig({
 
   e2e: {
 
-    baseUrl: "https://admin.qa.music.onepeloton.com/",
+    baseUrl: "https://example.cypress.io/todo",
     trashAssetsBeforeRuns: false,
     screenshotOnRunFailure: true,
 
