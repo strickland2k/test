@@ -22,11 +22,11 @@ jobs:
           cp -r /home/runner/work/test/test/ui-test/cypress/videos/ public/videos/
 
       - name: Merge test results into one
-        working-directory: new-music-admin-UI-tests
+        working-directory: ui-test
         run: npm run report:merge
 
       - name: Generate HTML report
-        working-directory: new-music-admin-UI-tests
+        working-directory: ui-test
         run: npm run report:generate
 
       - name: Deploy report page
