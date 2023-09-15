@@ -12,14 +12,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
           working-directory: new-music-admin-UI-tests
           command: npx cypress run --spec cypress/e2e/*/*.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
-
       - name: Copy test execution videos
         working-directory: new-music-admin-UI-tests
         run: |
