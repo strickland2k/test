@@ -13,13 +13,13 @@ jobs:
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
-          working-directory: new-music-admin-UI-tests
+          working-directory: ui-test
           command: npx cypress run --spec cypress/e2e/*/*.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
       - name: Copy test execution videos
-        working-directory: new-music-admin-UI-tests
+        working-directory: ui-test
         run: |
           mkdir public
-          cp -r /home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/cypress/videos/ public/videos/
+          cp -r /home/runner/work/test/test/ui-test/cypress/videos/ public/videos/
 
       - name: Merge test results into one
         working-directory: new-music-admin-UI-tests
