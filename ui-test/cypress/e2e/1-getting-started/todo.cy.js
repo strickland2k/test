@@ -18,6 +18,7 @@ describe('example to-do app', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://example.cypress.io/todo')
+    cy.get('.todo-list lssi').should('have.length', 2)
   })
 
   it('displays two todo items by default', () => {
@@ -32,6 +33,7 @@ describe('example to-do app', () => {
     // and then perform an assertion with `should`.
     cy.get('.todo-list li').first().should('have.text', 'Pay electric bill')
     cy.get('.todo-list li').last().should('have.text', 'Walk the dog')
+    cy.get('.todo-list lisss').should('have.length', 2)
   })
 
   it('can add new todo items', () => {
