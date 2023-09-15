@@ -1,39 +1,64 @@
-name: Create Cypress report
+# action.yml
+name: Cypress Tests
+
 on:
   push:
     branches:
-      - 'master'
-jobs:
-  cypress-e2e-chrome81:
-    name: Run on Chrome 81
-    runs-on: ubuntu-18.04
-    container: cypress/browsers:node12.16.2-chrome81-ff75
-  
-    steps:
-        - uses: actions/checkout@v2
-        - name: Install a project with a clean slate
-            run: |
-                npm ci
-                $(npm bin)/cypress cache path
-                $(npm bin)/cypress cache list
-                $(npm bin)/cypress verify
-        - name: Run Cypress
-        with: npm run test:chrome
-        continue-on-error: true
+      - 'UI-MAPI-15378'
 
-        - name: Copy test execution videos
-            run: |
-                mkdir public
-                cp -r cypress/videos public/videos
-                
-        - name: Merge test results into one
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        with:
+          working-directory: new-music-admin-UI-tests
+          command: npx cypress run --spec cypress/e2e/*/*.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+
+      - name: Copy test execution videos
+        working-directory: new-music-admin-UI-tests
+        run: |
+          mkdir public
+          cp -r /home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/cypress/videos/ public/videos/
+
+      - name: Merge test results into one
+        working-directory: new-music-admin-UI-tests
         run: npm run report:merge
-        - name: Generate HTML report
+
+      - name: Generate HTML report
+        working-directory: new-music-admin-UI-tests
         run: npm run report:generate
-        - name: Deploy report page
+
+        
+        
+      
+      # - name: Save build folder
+      #   uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: cypress-execution-report
+      #     if-no-files-found: error
+      #     path: /home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/mochareports/mochawesome.html
+      #     retention-days: 5
+
+
+      # - name: Send GitHub Action trigger data to Slack workflow
+      #   id: slack
+      #   uses: slackapi/slack-github-action@v1.24.0
+      #   with:
+      #     payload-file-path: "/home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/mochareports/mochawesome.json"
+      #   env:
+      #     SLACK_WEBHOOK_URL: https://hooks.slack.com/workflows/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
+          # https://hooks.slack.com/workflows/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
+
+
+      - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./public
-            user_name: 'github-actions[bot]'
-            user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
