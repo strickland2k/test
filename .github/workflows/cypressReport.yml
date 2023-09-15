@@ -1,10 +1,7 @@
 # action.yml
 name: Cypress Tests
 
-on:
-  push:
-    branches:
-      - 'UI-MAPI-15378'
+on: push
 
 jobs:
   cypress-run:
