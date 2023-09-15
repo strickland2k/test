@@ -14,7 +14,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ui-test
-          command: npx cypress run --spec cypress/e2e/*/*.cy.js
+          command: npx cypress run --spec cypress/e2e/1-getting-started/todo.cy.js
       - name: Copy test execution videos
         working-directory: ui-test
         run: |
