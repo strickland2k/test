@@ -29,29 +29,6 @@ jobs:
         working-directory: new-music-admin-UI-tests
         run: npm run report:generate
 
-        
-        
-      
-      # - name: Save build folder
-      #   uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: cypress-execution-report
-      #     if-no-files-found: error
-      #     path: /home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/mochareports/mochawesome.html
-      #     retention-days: 5
-
-
-      # - name: Send GitHub Action trigger data to Slack workflow
-      #   id: slack
-      #   uses: slackapi/slack-github-action@v1.24.0
-      #   with:
-      #     payload-file-path: "/home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/mochareports/mochawesome.json"
-      #   env:
-      #     SLACK_WEBHOOK_URL: https://hooks.slack.com/workflows/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
-          # https://hooks.slack.com/workflows/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
-
-
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
