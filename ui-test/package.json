@@ -5,6 +5,7 @@
   "devDependencies": {
     "cypress-multi-reporters": "^1.6.3",
     "mocha": "^10.2.0",
+    "mocha-multi-reporters": "^1.5.1",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
     "mochawesome-report-generator": "^6.2.0"
