@@ -1,9 +1,7 @@
 # action.yml
 name: Cypress Tests
 
-on: 
-  schedule:
-      - cron: '0 8 1-31 * *'
+on: push
 
 jobs:
   cypress-run:
@@ -16,7 +14,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ui-test
-          command: npx cypress run --spec cypress/e2e/1-getting-started/*.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+          command: npx cypress run --spec cypress/e2e/1-getting-started/test.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
       - name: Copy test execution videos
         working-directory: ui-test
         run: |

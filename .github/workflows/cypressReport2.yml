@@ -14,7 +14,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ui-test
-          command: npx cypress run --spec ui-test/cypress/e2e/2-advanced-examples/actions.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+          command: npx cypress run --spec cypress/e2e/1-getting-started/test2.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
       - name: Copy test execution videos
         working-directory: ui-test
         run: |
