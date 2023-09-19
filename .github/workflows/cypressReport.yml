@@ -1,8 +1,8 @@
 # action.yml
 name: QAEnv Tests
-on:
-  schedule:
-    - cron: '0 8 1-31 * *'
+on: push
+  # schedule:
+  #   - cron: '0 8 1-31 * *'
 
 jobs:
   cypress-run:
@@ -37,14 +37,6 @@ jobs:
           destination_dir: qa/
           keep_files: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
-      - name: Send GitHub Action trigger data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.24.0
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
 
 
 
