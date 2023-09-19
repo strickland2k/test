@@ -1,6 +1,8 @@
 # action.yml
 name: QAEnv Tests
-on: push
+on: 
+  schedule:
+    - cron: '0 8 1-31 * *'
 
 jobs:
   cypress-run:
