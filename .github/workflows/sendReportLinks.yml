@@ -1,6 +1,8 @@
 # action.yml
 name: Send Report Links
-on: push
+on: 
+    schedule:
+      - cron: '0 2 * * *'
 
 jobs:
   cypress-run:
