@@ -1,7 +1,9 @@
 # action.yml
 name: DevEnv Tests
-
-on: push
+on: 
+    push:
+        branches:
+          - 'master'
 
 jobs:
   cypress-run:
