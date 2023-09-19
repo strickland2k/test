@@ -9,10 +9,6 @@ describe('BEANS', () => {
         cy.get('.todo-list li').should('have.length', 10)
     })
 
-    it('BEANS2', () => {
-        cy.get('.todo-list li').should('have.length', 10)
-    })
-
     it('BEAN3', () => {
         cy.log(10)
     })
