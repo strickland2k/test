@@ -13,8 +13,8 @@
     "skipped": 0,
     "hasSkipped": false,
     "start": "2023-09-15T18:43:33.754Z",
-    "end": "2023-09-19T13:25:33.566Z",
-    "duration": 326519812
+    "end": "2023-09-19T13:26:27.934Z",
+    "duration": 326574180
   },
   "results": [
     {
@@ -376,7 +376,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "8744b9f5-b3d4-42c6-8761-ce9ededbd670",
+      "uuid": "a0a9a52b-f17d-4bd4-a031-e426efb561b4",
       "title": "",
       "fullFile": "cypress/e2e/1-getting-started/test.cy.js",
       "file": "cypress/e2e/1-getting-started/test.cy.js",
@@ -385,7 +385,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "b6252977-caea-4584-abcc-8d563bb0a7cb",
+          "uuid": "0f05a62b-2a7b-4f16-bf19-52c57472f451",
           "title": "BEANS",
           "fullFile": "",
           "file": "",
@@ -396,7 +396,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 5856,
+              "duration": 5607,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -409,8 +409,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test.cy.js:9:32)",
                 "diff": null
               },
-              "uuid": "374acad5-c816-4115-b34b-cf4262f8c6e6",
-              "parentUUID": "b6252977-caea-4584-abcc-8d563bb0a7cb",
+              "uuid": "ceba1329-32f6-480a-b21e-545e07f62da4",
+              "parentUUID": "0f05a62b-2a7b-4f16-bf19-52c57472f451",
               "isHook": false,
               "skipped": false
             },
@@ -418,7 +418,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 5146,
+              "duration": 5192,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -431,8 +431,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test.cy.js:12:32)",
                 "diff": null
               },
-              "uuid": "b22c3ab7-16ea-42e4-9e9e-1140233e48d6",
-              "parentUUID": "b6252977-caea-4584-abcc-8d563bb0a7cb",
+              "uuid": "c5fef6ea-3990-4c13-97cf-c731638811be",
+              "parentUUID": "0f05a62b-2a7b-4f16-bf19-52c57472f451",
               "isHook": false,
               "skipped": false
             },
@@ -440,7 +440,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 5242,
+              "duration": 4990,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -453,8 +453,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test.cy.js:15:32)",
                 "diff": null
               },
-              "uuid": "9a99d080-af4f-4c63-b84a-cf3931c88c4e",
-              "parentUUID": "b6252977-caea-4584-abcc-8d563bb0a7cb",
+              "uuid": "9a1894e8-2ea3-456d-82e2-275dd2c0cda0",
+              "parentUUID": "0f05a62b-2a7b-4f16-bf19-52c57472f451",
               "isHook": false,
               "skipped": false
             },
@@ -462,7 +462,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 1009,
+              "duration": 975,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -471,24 +471,24 @@
               "context": "\"videos/test.cy.js.mp4\"",
               "code": "cy.log(10);",
               "err": {},
-              "uuid": "8cfd1112-a0de-4dff-975a-54adb6b95f99",
-              "parentUUID": "b6252977-caea-4584-abcc-8d563bb0a7cb",
+              "uuid": "d3bb68fc-3e21-44b8-956c-3bf6e8086e2d",
+              "parentUUID": "0f05a62b-2a7b-4f16-bf19-52c57472f451",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "8cfd1112-a0de-4dff-975a-54adb6b95f99"
+            "d3bb68fc-3e21-44b8-956c-3bf6e8086e2d"
           ],
           "failures": [
-            "374acad5-c816-4115-b34b-cf4262f8c6e6",
-            "b22c3ab7-16ea-42e4-9e9e-1140233e48d6",
-            "9a99d080-af4f-4c63-b84a-cf3931c88c4e"
+            "ceba1329-32f6-480a-b21e-545e07f62da4",
+            "c5fef6ea-3990-4c13-97cf-c731638811be",
+            "9a1894e8-2ea3-456d-82e2-275dd2c0cda0"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 17253,
+          "duration": 16764,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
