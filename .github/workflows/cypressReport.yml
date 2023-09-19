@@ -1,5 +1,5 @@
 # action.yml
-name: Cypress Tests
+name: QAEnv Tests
 
 on: push
 
@@ -46,6 +46,6 @@ jobs:
 
 
 
-          
+
 
 

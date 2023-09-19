@@ -1,2 +1,6 @@
 
 ui-test/public/**
+ui-test/cypress/screenshots/test.cy.js/BEANS -- PODS (failed) (1).png
+*.png
+*.json
+*.mp4

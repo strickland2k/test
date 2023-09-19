@@ -21,28 +21,11 @@ import './commands'
 
 import addContext from 'mochawesome/addContext'
 
-Cypress.on('test:after:run', (test, runnable) => {
-  if (test.state === 'failed') {
-    let item = runnable
-    const nameParts = [runnable.title]
+Cypress.on("test:after:run", (test, runnable) => {
+    
+  let videoName = Cypress.spec.name
+  videoName = videoName.replace('/.js.*', '.js')
+  const videoUrl = 'videos/' + videoName + '.mp4'
 
-    // Iterate through all parents and grab the titles
-    while (item.parent) {
-      nameParts.unshift(item.parent.title)
-      item = item.parent
-    }
-
-    if (runnable.hookName) {
-      nameParts.push(`${runnable.hookName} hook`)
-    }
-
-    const MAX_SPEC_NAME_LENGTH = 220;
-    const fullTestName = nameParts.filter(Boolean).join(" -- ").slice(0, MAX_SPEC_NAME_LENGTH);
-
-    const fullTestName1 = fullTestName.replace('<', '').replace('>', '')
-
-    const imageUrl = `screenshots/${Cypress.spec.name}/${fullTestName1} (failed) (attempt 2).png`
-
-    addContext({ test }, imageUrl)
-  }
-})
+  addContext({ test }, videoUrl)
+});
