@@ -13,8 +13,8 @@
     "skipped": 0,
     "hasSkipped": false,
     "start": "2023-09-15T18:43:33.754Z",
-    "end": "2023-09-19T13:25:15.252Z",
-    "duration": 326501498
+    "end": "2023-09-19T13:28:17.635Z",
+    "duration": 326683881
   },
   "results": [
     {
@@ -376,7 +376,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "e3c3d981-e215-4dff-82e1-cbf27c3359b5",
+      "uuid": "ebcedb24-9a51-4e85-b8b6-aa61dbb434ca",
       "title": "",
       "fullFile": "cypress/e2e/1-getting-started/test2.cy.js",
       "file": "cypress/e2e/1-getting-started/test2.cy.js",
@@ -385,7 +385,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3c16ee79-cfe9-4555-a368-25ff1ec9e053",
+          "uuid": "337c734e-5201-4c37-8c1d-68cf515906c4",
           "title": "BEANS",
           "fullFile": "",
           "file": "",
@@ -396,7 +396,7 @@
               "title": "BEANS",
               "fullTitle": "BEANS BEANS",
               "timedOut": null,
-              "duration": 5631,
+              "duration": 5622,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -409,8 +409,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test2.cy.js:9:32)",
                 "diff": null
               },
-              "uuid": "db7cb599-48e7-4fb0-8f1a-ee1c9b857996",
-              "parentUUID": "3c16ee79-cfe9-4555-a368-25ff1ec9e053",
+              "uuid": "4df47def-7622-4c9f-8156-4a917b01ce0a",
+              "parentUUID": "337c734e-5201-4c37-8c1d-68cf515906c4",
               "isHook": false,
               "skipped": false
             },
@@ -418,7 +418,7 @@
               "title": "BEANS2",
               "fullTitle": "BEANS BEANS2",
               "timedOut": null,
-              "duration": 5371,
+              "duration": 5378,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -431,8 +431,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test2.cy.js:13:32)",
                 "diff": null
               },
-              "uuid": "fc0a8191-951f-481b-a54b-9d3db9530176",
-              "parentUUID": "3c16ee79-cfe9-4555-a368-25ff1ec9e053",
+              "uuid": "7610b91c-725a-4835-9296-307da1e05d47",
+              "parentUUID": "337c734e-5201-4c37-8c1d-68cf515906c4",
               "isHook": false,
               "skipped": false
             },
@@ -440,7 +440,7 @@
               "title": "BEAN3",
               "fullTitle": "BEANS BEAN3",
               "timedOut": null,
-              "duration": 788,
+              "duration": 766,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -449,23 +449,23 @@
               "context": "\"videos/test2.cy.js.mp4\"",
               "code": "cy.log(10);",
               "err": {},
-              "uuid": "91e4cd47-f59f-4371-b16a-040143ee96fe",
-              "parentUUID": "3c16ee79-cfe9-4555-a368-25ff1ec9e053",
+              "uuid": "b67b1c83-b213-4697-814c-e6341464f4ee",
+              "parentUUID": "337c734e-5201-4c37-8c1d-68cf515906c4",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "91e4cd47-f59f-4371-b16a-040143ee96fe"
+            "b67b1c83-b213-4697-814c-e6341464f4ee"
           ],
           "failures": [
-            "db7cb599-48e7-4fb0-8f1a-ee1c9b857996",
-            "fc0a8191-951f-481b-a54b-9d3db9530176"
+            "4df47def-7622-4c9f-8156-4a917b01ce0a",
+            "7610b91c-725a-4835-9296-307da1e05d47"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 11790,
+          "duration": 11766,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
