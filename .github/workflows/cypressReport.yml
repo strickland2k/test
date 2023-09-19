@@ -1,10 +1,6 @@
 # action.yml
-name: QAEnv Tests
-
-on: 
-  push:
-    branches:
-      - 'master'
+name: Cypress Tests
+on: push
 
 jobs:
   cypress-run:
