@@ -33,7 +33,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_dir: /home/runner/work/test/test/ui-test/public
-          destination_dir: QAenv/
+        #   destination_dir: QAenv/
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send GitHub Action trigger data to Slack workflow
