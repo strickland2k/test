@@ -38,8 +38,6 @@ jobs:
       - name: Send GitHub Action trigger data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
-        with:
-          payload-file-path: "/home/runner/work/music-testing/music-testing/new-music-admin-UI-tests/mochareports/mochawesome.json"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
