@@ -1,7 +1,6 @@
 
 # action.yml
-name: Cypress Tests
-
+name: Test Action
 on: push
 
 jobs:
@@ -28,17 +27,3 @@ jobs:
       - name: Generate HTML report
         working-directory: ui-test
         run: npm run report:generate
-        
-      - name: Deploy report page
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: /home/runner/work/test/test/ui-test/public
-          destination_dir: qa/
-          keep_files: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Send GitHub Action trigger data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.24.0
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
