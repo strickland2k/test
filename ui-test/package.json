@@ -13,6 +13,9 @@
   "scripts": {
     "test:chrome": "cypress run --browser chrome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > public/index.json",
-    "report:generate": "marge public/index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
+    "report:generate": "marge public/index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "cleanData": "rm -rf cypress/screenshots cypress/results cypress/reports cypress/videos reports public"
+
+    
   }
 }
