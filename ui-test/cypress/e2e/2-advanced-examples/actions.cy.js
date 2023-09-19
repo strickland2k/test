@@ -138,7 +138,7 @@ context('Actions', () => {
     cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]')
       .check().should('be.checked')
 
-    cy.get('.action-radios [type="radio"]').not('[disabled]')
+    cy.get('.action-radi d pe="radio"]').not('[disabled]')
       .check().should('be.checked')
 
     // .check() accepts a value argument
@@ -186,7 +186,7 @@ context('Actions', () => {
 
     // at first, no option should be selected
     cy.get('.action-select')
-      .should('have.value', '--Select a fruit--')
+      .should('have.value', '--Selec fruit--')
 
     // Select option(s) with matching text content
     cy.get('.action-select').select('apples')
