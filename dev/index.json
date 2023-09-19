@@ -1,20 +1,20 @@
 {
   "stats": {
-    "suites": 2,
-    "tests": 12,
-    "passes": 10,
+    "suites": 3,
+    "tests": 15,
+    "passes": 11,
     "pending": 0,
-    "failures": 2,
-    "testsRegistered": 12,
-    "passPercent": 83.33333333333333,
+    "failures": 4,
+    "testsRegistered": 15,
+    "passPercent": 73.33333333333333,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
     "start": "2023-09-15T18:43:33.754Z",
-    "end": "2023-09-15T18:46:36.627Z",
-    "duration": 182873
+    "end": "2023-09-19T13:20:13.790Z",
+    "duration": 326200036
   },
   "results": [
     {
@@ -361,6 +361,111 @@
           "pending": [],
           "skipped": [],
           "duration": 5503,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "4aef9464-cd7a-4b9b-bbeb-d4191bd9852b",
+      "title": "",
+      "fullFile": "cypress/e2e/1-getting-started/test2.cy.js",
+      "file": "cypress/e2e/1-getting-started/test2.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "adc46916-7919-4ab6-90df-8cb4b0637b02",
+          "title": "BEANS",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "BEANS",
+              "fullTitle": "BEANS BEANS",
+              "timedOut": null,
+              "duration": 5532,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test2.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test2.cy.js:9:32)",
+                "diff": null
+              },
+              "uuid": "e415c67c-41f8-4bb4-9a5b-f74fb37313ae",
+              "parentUUID": "adc46916-7919-4ab6-90df-8cb4b0637b02",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "BEANS2",
+              "fullTitle": "BEANS BEANS2",
+              "timedOut": null,
+              "duration": 5323,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test2.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/test2.cy.js:13:32)",
+                "diff": null
+              },
+              "uuid": "624ed4f3-083a-4b8d-9ef8-4d78acf56807",
+              "parentUUID": "adc46916-7919-4ab6-90df-8cb4b0637b02",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "BEAN3",
+              "fullTitle": "BEANS BEAN3",
+              "timedOut": null,
+              "duration": 1026,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/test2.cy.js.mp4\"",
+              "code": "cy.log(10);",
+              "err": {},
+              "uuid": "4ad3ba29-fbaa-42c6-990b-09077e9ee296",
+              "parentUUID": "adc46916-7919-4ab6-90df-8cb4b0637b02",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4ad3ba29-fbaa-42c6-990b-09077e9ee296"
+          ],
+          "failures": [
+            "e415c67c-41f8-4bb4-9a5b-f74fb37313ae",
+            "624ed4f3-083a-4b8d-9ef8-4d78acf56807"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 11881,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
