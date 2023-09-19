@@ -1,8 +1,8 @@
 # action.yml
 name: QAEnv Tests
-on: 
-  schedule:
-    - cron: '0 8 1-31 * *'
+on: push
+  # schedule:
+  #   - cron: '0 8 1-31 * *'
 
 jobs:
   cypress-run:
@@ -35,7 +35,7 @@ jobs:
         with:
           publish_dir: /home/runner/work/test/test/ui-test/public
           destination_dir: qa/
-          keep_files: true
+          keep_files: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
 

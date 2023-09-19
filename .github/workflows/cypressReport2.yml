@@ -33,7 +33,7 @@ jobs:
         with:
           publish_dir: /home/runner/work/test/test/ui-test/public
           destination_dir: dev/
-          keep_files: true
+          keep_files: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send GitHub Action trigger data to Slack workflow
