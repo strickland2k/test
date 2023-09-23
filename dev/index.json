@@ -12,13 +12,13 @@
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2023-09-22T08:10:08.469Z",
-    "end": "2023-09-22T08:10:24.360Z",
-    "duration": 15891
+    "start": "2023-09-23T00:46:08.141Z",
+    "end": "2023-09-23T00:46:23.581Z",
+    "duration": 15440
   },
   "results": [
     {
-      "uuid": "ff4b89f5-1b23-4440-8152-d1b8889b5c20",
+      "uuid": "e9fbfc7b-1d36-47fa-a7b1-ccb5215cfaaf",
       "title": "",
       "fullFile": "cypress/e2e/contentManager/test2.cy.js",
       "file": "cypress/e2e/contentManager/test2.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "738396ca-3b0e-4d23-93e3-6303c299ebda",
+          "uuid": "8aa17ce6-5e71-4013-8840-d79847fe38fd",
           "title": "BEANS",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "BEANS",
               "fullTitle": "BEANS BEANS",
               "timedOut": null,
-              "duration": 5739,
+              "duration": 5486,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +51,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test2.cy.js:9:32)",
                 "diff": null
               },
-              "uuid": "ab58ab78-7c61-4f64-9b66-d005ef2ca45a",
-              "parentUUID": "738396ca-3b0e-4d23-93e3-6303c299ebda",
+              "uuid": "9dc5210b-3f8a-4a2a-a614-62fe10cd3338",
+              "parentUUID": "8aa17ce6-5e71-4013-8840-d79847fe38fd",
               "isHook": false,
               "skipped": false
             },
@@ -60,7 +60,7 @@
               "title": "BEAN3",
               "fullTitle": "BEANS BEAN3",
               "timedOut": null,
-              "duration": 901,
+              "duration": 937,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -69,22 +69,22 @@
               "context": "\"videos/test2.cy.js.mp4\"",
               "code": "cy.log(10);",
               "err": {},
-              "uuid": "c7420fca-77d5-4bf2-ad06-2fde6c302fb9",
-              "parentUUID": "738396ca-3b0e-4d23-93e3-6303c299ebda",
+              "uuid": "9e98fde8-69e2-4bd2-b9f2-4a44547b7aeb",
+              "parentUUID": "8aa17ce6-5e71-4013-8840-d79847fe38fd",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "c7420fca-77d5-4bf2-ad06-2fde6c302fb9"
+            "9e98fde8-69e2-4bd2-b9f2-4a44547b7aeb"
           ],
           "failures": [
-            "ab58ab78-7c61-4f64-9b66-d005ef2ca45a"
+            "9dc5210b-3f8a-4a2a-a614-62fe10cd3338"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 6640,
+          "duration": 6423,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
