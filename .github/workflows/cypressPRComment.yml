@@ -2,7 +2,7 @@ on: pull_request
 
 jobs:
     cypress-run:
-      if: contains(github.event.pull_request.labels.*.name, 'cypress')
+      if: contains(github.event.pull_request.labels.*.name, 'bug')
       runs-on: ubuntu-22.04
       container:
         image: cypress/included:12.17.1
