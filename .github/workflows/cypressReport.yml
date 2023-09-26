@@ -5,75 +5,43 @@ on: push
   #   - cron: '0 8 1-31 * *'
 
 jobs:
-
-  install:
-    runs-on: ubuntu-20.04
-    # explicitly set the output of this job
-    # so that other jobs can use it
-    outputs:
-      matrix: ${{ steps.prepare.outputs.matrix }}
-    steps:
-      # generate the list using a bash script
-      - name: Create matrix ⊹
-        id: prepare
-        # for reusable workflow, must use the full action reference
-        uses: bahmutov/gh-build-matrix@main
-        with:
-          n: 3 # number of containers to output
-
-      - name: Print result 🖨
-        run: echo '${{ steps.prepare.outputs.matrix }}'
-
-
   cypress-run:
-    needs: install
-    runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    runs-on: ubuntu-22.04
+    container:
+      image: cypress/included:12.17.1
     steps:
-      - name: Checkout 🛎
+      - name: Checkout
         uses: actions/checkout@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        with:
+          working-directory: ui-test
+          command: npx cypress run --spec cypress/e2e/contentManager/test.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+      - name: Copy test execution videos
+        working-directory: ui-test
+        run: |
+          mkdir public
+          cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
 
-      - name: Print GitHub variables 🖨
-        run: npx @bahmutov/print-env GITHUB
+      - name: Merge test results into one
+        working-directory: ui-test
+        run: npm run report:merge
 
-      - name: Print GitHub strategy context 🖨
-        run: echo '${{ toJSON(strategy) }}'
-
-      - name: Run split Cypress tests 🧪
-        # https://github.com/cypress-io/github-action
-        uses: cypress-io/github-action@v5
-        # using operating system process environment variables
-        env:
-          SPLIT: ${{ strategy.job-total }}
-          SPLIT_INDEX: ${{ strategy.job-index }}
-
-      # - name: Copy test execution videos
-      #   working-directory: ui-test
-      #   run: |
-      #     mkdir public
-      #     cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
-
-      # - name: Merge test results into one
-      #   working-directory: ui-test
-      #   run: npm run report:merge
-
-      # - name: Generate HTML report
-      #   working-directory: ui-test
-      #   run: npm run report:generate
+      - name: Generate HTML report
+        working-directory: ui-test
+        run: npm run report:generate
         
-      # - name: Get current date
-      #   id: date
-      #   run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
-      # - name: Deploy report page
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: /__w/test/test/ui-test/public
-      #     destination_dir: qa/run-${{ steps.date.outputs.date }}/
-
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /__w/test/test/ui-test/public
+          destination_dir: qa/run-${{ steps.date.outputs.date }}/
 
 
 
