@@ -20,13 +20,14 @@ jobs:
           # Disable running of tests within install job
           working-directory: ui-test
           runTests: false
+          build: npm run build
 
       - name: Save build folder
         uses: actions/upload-artifact@v3
         with:
           name: build
           if-no-files-found: error
-          path: ./dist
+          path: build
 
 
   cypress-run:
