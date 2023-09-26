@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cypress Reports Homepage</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to your CSS file (optional) -->
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Distribute links evenly */
+            gap: 10px; /* Add space between links */
+            flex-wrap: wrap; /* Allow wrapping of buttons if the screen is too narrow */
+        }
+
+        .button-container a.cta-button {
+            flex: 1; /* Expand to fill available space */
+            text-align: center; /* Center text within the link */
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #808080; /* Button background color */
+            color: #fff; /* Button text color */
+            border-radius: 10px; /* Rounded edges */
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* Add hover effect */
+        }
+
+        .button-container a.cta-button:hover {
+            background-color: #626262; /* Button background color on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="image-container">
+            <img src="word.png" alt="Word Image" width="650" height="100">
+            <img src="logo.png" alt="Logo" width="200" height="200">
+        </div>
+    </header>
+    <main>
+        <h2>Cypress Reports</h2>
+        <div class="button-container">
+            <a class="cta-button" href="devReport.html">View Dev Reports</a>
+            <a class="cta-button" href="qaReport.html">View QA Reports</a>
+            <a class="cta-button" href="stagingReport.html">View Staging Reports</a>
+            <a class="cta-button" href="prodReport.html">View Production Reports</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Cypress Reports </p>
+    </footer>
+</body>
+</html>
