@@ -1,15 +1,46 @@
 on: pull_request
 
 jobs:
-  example_comment_pr:
-    runs-on: ubuntu-latest
-    name: An example job to comment a PR
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    cypress-run:
+      runs-on: ubuntu-22.04
+      container:
+        image: cypress/included:12.17.1
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Cypress run
+          uses: cypress-io/github-action@v6
+          continue-on-error: true
+          with:
+            working-directory: ui-test
+            command: npx cypress run --spec cypress/e2e/contentManager/test.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+        - name: Copy test execution videos
+          working-directory: ui-test
+          run: |
+            mkdir public
+            cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
+  
+        - name: Merge test results into one
+          working-directory: ui-test
+          run: npm run report:merge
+  
+        - name: Generate HTML report
+          working-directory: ui-test
+          run: npm run report:generate
+          
+        - name: Get current date
+          id: date
+          run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+  
+        - name: Deploy report page
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: /__w/test/test/ui-test/public
+            destination_dir: qa/run-${{ steps.date.outputs.date }}/
 
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            https://strickland2k.github.io/test/
+        - name: Comment PR
+          uses: thollander/actions-comment-pull-request@v2
+          with:
+            message: |
+                https://strickland2k.github.io/test/qa/run-${{ steps.date.outputs.date }}/
