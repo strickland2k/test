@@ -29,60 +29,52 @@
         <p>&copy; Cypress Reports </p>
     </footer>
     <script>
-        // JavaScript code to dynamically generate navigation links
-    document.addEventListener("DOMContentLoaded", function () {
-        var dynamicNav = document.getElementById("dynamicNav");
-        // Base directory where your HTML pages are located
-        var baseDirectory = "pr/"; // Updated base directory
+                // JavaScript code to dynamically generate navigation links
+                document.addEventListener("DOMContentLoaded", function () {
+            var dynamicNav = document.getElementById("dynamicNav");
+            // Base directory where your HTML pages are located
+            var baseDirectory = "pr/"; // Updated base directory
 
-        // Function to recursively find index.html files and generate links
-        function findIndexHTMLFiles(directory) {
-            var files = [];
-            var dirList = fs.readdirSync(directory); // You might need to replace this with the appropriate method for your environment
+            // Function to recursively find index.html files and generate links
+            function findIndexHTMLFiles(directory) {
+                var files = [];
 
-            dirList.forEach(function (file) {
-                var filePath = path.join(directory, file);
-                var stats = fs.statSync(filePath); // You might need to replace this with the appropriate method for your environment
+                // List all files in the directory (assuming your web server supports this)
+                var dirList = [
+                    "branch-PR1/index.html",
+                    "branch-PR2/index.html",
+                    "branch-PR3/index.html"
+                    // Add more as needed
+                ];
 
-                if (stats.isDirectory()) {
-                    // If it's a directory, check if it's in the format "branch-(BRANCH NAME)"
-                    if (file.startsWith("branch-")) {
-                        var indexPath = path.join(filePath, "index.html");
-                        if (fs.existsSync(indexPath)) {
-                            // If an index.html file exists, create a link
-                            var formattedPath = indexPath.replace(/\\/g, '/'); // Normalize the path for URLs
-                            var relativePath = formattedPath.replace(baseDirectory, ""); // Remove the base directory
-                            var link = document.createElement("a");
-                            link.href = relativePath;
-                            link.textContent = "Report for " + file;
-                            files.push(link);
-                            console.log("Generated Link:", link.href); // Log the generated link
-                        }
-                    } else {
-                        // If it's not in the correct format, recursively search for index.html files
-                        var subFiles = findIndexHTMLFiles(filePath);
-                        files = files.concat(subFiles);
+                dirList.forEach(function (file) {
+                    // Check if the file is in the format "branch-(BRANCH NAME)/index.html"
+                    if (file.match(/^branch-.+\/index\.html$/)) {
+                        var link = document.createElement("a");
+                        link.href = baseDirectory + file;
+                        link.textContent = "Report for " + file;
+                        files.push(link);
+                        console.log("Generated Link:", link.href); // Log the generated link
                     }
+                });
+
+                return files;
+            }
+
+            // Generate the report links by calling the function
+            var reportLinks = findIndexHTMLFiles(baseDirectory);
+
+            // Append the generated links to the dynamicNav element
+            reportLinks.forEach(function (link, index) {
+                dynamicNav.appendChild(link);
+
+                // Add a horizontal line (<hr>) between report links except for the last one
+                if (index < reportLinks.length - 1) {
+                    var separator = document.createElement("hr");
+                    dynamicNav.appendChild(separator);
                 }
             });
-
-            return files;
-        }
-
-        // Generate the report links by calling the function
-        var reportLinks = findIndexHTMLFiles(baseDirectory);
-
-        // Append the generated links to the dynamicNav element
-        reportLinks.forEach(function (link, index) {
-            dynamicNav.appendChild(link);
-
-            // Add a horizontal line (<hr>) between report links except for the last one
-            if (index < reportLinks.length - 1) {
-                var separator = document.createElement("hr");
-                dynamicNav.appendChild(separator);
-            }
         });
-    });
     </script>
 </body>
 </html>
