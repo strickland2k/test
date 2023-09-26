@@ -29,7 +29,7 @@ jobs:
         #   run: npm run report:generate
 
         - name: Echo branch
-          run: echo "${{ github.event.pull_request }}"
+          run: echo "${{ github.head_ref}}"
           
         # - name: Deploy report page
         #   uses: peaceiris/actions-gh-pages@v3
