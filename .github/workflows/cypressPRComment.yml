@@ -1,5 +1,6 @@
 on: pull_request
 
+
 jobs:
     cypress-run:
       if: contains(github.event.pull_request.labels.*.name, 'bug')
