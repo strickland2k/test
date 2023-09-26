@@ -18,6 +18,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           # Disable running of tests within install job
+          working-directory: ui-test
           runTests: false
           build: npm run build
 
