@@ -14,13 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          # Disable running of tests within install job
-          working-directory: ui-test
-          runTests: false
-          build: npx run build
+      - name: Install Dependencies
+        run: npm ci 
 
       - name: Save build folder
         uses: actions/upload-artifact@v3
