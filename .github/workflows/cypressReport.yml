@@ -40,7 +40,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /__w/music-testing/music-testing/new-music-admin-UI-tests/public
+          publish_dir: /__w/test/test/ui-test/public
           destination_dir: qa/run-${{ steps.date.outputs.date }}/
 
 
