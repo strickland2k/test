@@ -20,7 +20,6 @@ jobs:
           # Disable running of tests within install job
           working-directory: ui-test
           runTests: false
-          build: npm run build
 
       - name: Save build folder
         uses: actions/upload-artifact@v3
