@@ -3,8 +3,8 @@ on: pull_request
 jobs:
     cypress-run:
       runs-on: ubuntu-22.04
-      container:
-        image: cypress/included:12.17.1
+    #   container:
+    #     image: cypress/included:12.17.1
       steps:
         - name: Checkout
           uses: actions/checkout@v3
