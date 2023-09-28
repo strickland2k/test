@@ -3,6 +3,8 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/included:12.17.1
     # Runs tests in parallel with matrix strategy https://docs.cypress.io/guides/guides/parallelization
     # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     # Also see warning here https://github.com/cypress-io/github-action#parallel
@@ -19,7 +21,7 @@ jobs:
         with:
           # Starts web server for E2E tests - replace with your own server invocation
           # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-          start: npx cypress run --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+          start: npx cypress run --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json --record true
           working-directory: ui-test
           # Records to Cypress Cloud
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
