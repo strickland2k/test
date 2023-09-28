@@ -10,9 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-
-
-      - name: Remove Old Date
+      - name: Remove Old Data
         working-directory: ui-test
         run: npm run cleanData
 
@@ -28,18 +26,18 @@ jobs:
           mkdir public
           cp -r /home/runner/work/test/test/ui-test/cypress/videos/ public/videos/
 
-      - name: Merge test results into one
-        working-directory: ui-test
-        run: npm run report:merge
+    #   - name: Merge test results into one
+    #     working-directory: ui-test
+    #     run: npm run report:merge
 
-      - name: Generate HTML report
-        working-directory: ui-test
-        run: npm run report:generate
+    #   - name: Generate HTML report
+    #     working-directory: ui-test
+    #     run: npm run report:generate
         
-      - name: Deploy report page
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: /home/runner/work/test/test/ui-test/public
-          destination_dir: qa/
-          keep_files: false
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: Deploy report page
+    #     uses: peaceiris/actions-gh-pages@v3
+    #     with:
+    #       publish_dir: /home/runner/work/test/test/ui-test/public
+    #       destination_dir: qa/
+    #       keep_files: false
+    #       github_token: ${{ secrets.GITHUB_TOKEN }}
