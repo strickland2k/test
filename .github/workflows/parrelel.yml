@@ -41,6 +41,11 @@ jobs:
           mkdir public
           cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: /__w/test/test/ui-test/public/
+
   generateReport:
     runs-on: ubuntu-latest
     needs: cypress-run
