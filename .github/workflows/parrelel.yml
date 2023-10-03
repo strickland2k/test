@@ -58,6 +58,7 @@ jobs:
         working-directory: ui-test
         run: npm run report:generate
         
+        
       # - name: Deploy report page
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
