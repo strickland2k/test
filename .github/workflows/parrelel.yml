@@ -38,7 +38,7 @@ jobs:
         working-directory: ui-test
         run: |
           mkdir public
-          cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
+          cp -r /__w/test/test/ui-test/cypress/videos/ cyoress/results/videos/
 
       - uses: actions/upload-artifact@v3
         with:
