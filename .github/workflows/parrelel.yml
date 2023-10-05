@@ -54,15 +54,19 @@ jobs:
         with:
           path: cypress/results/json/
 
-      - name: Merge test results into one
-        working-directory: ui-test
-        run: |
-          mkdir public
-          npm run report:merge
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: cypress/results/json/my-artifact1/
 
-      - name: Generate HTML report
-        working-directory: ui-test
-        run: npm run report:generate
+      # - name: Merge test results into one
+      #   working-directory: ui-test
+      #   run: |
+      #     mkdir public
+      #     npm run report:merge
+
+      # - name: Generate HTML report
+      #   working-directory: ui-test
+      #   run: npm run report:generate
 
         
       # - name: Deploy report page
