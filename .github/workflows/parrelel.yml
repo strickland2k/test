@@ -61,7 +61,7 @@ jobs:
       - name: Copy test execution videos
         run: |
           mkdir public
-          cp -r /home/runner/work/test/test/ui-test/cypress/results/json/videos/ public/videos/
+          cp -r cypress/results/json/videos/ public/videos/
 
       - name: Merge test results into one
         run: npm run report:merge
