@@ -54,17 +54,17 @@ jobs:
         with:
           path: cypress/results/json/
 
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: ui-test/cypress/results/json/my-artifact1/
+      # - name: Display structure of downloaded files
+      #   run: ls -R
+      #   working-directory: ui-test/cypress/results/json/my-artifact1/
 
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: ui-test
+      # - name: Display structure of downloaded files
+      #   run: ls -R
+      #   working-directory: ui-test
 
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: cypress
+      # - name: Display structure of downloaded files
+      #   run: ls -R
+      #   working-directory: cypress
 
       - name: Copy test execution videos
         run: |
