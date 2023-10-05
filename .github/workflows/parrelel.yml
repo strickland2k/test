@@ -69,16 +69,16 @@ jobs:
       - name: Copy test execution videos
         run: |
           mkdir public
-          cp -r cypress/results/json/*/videos/ public/videos/
+          cp -r ./results/json/my-artifact1/videos/ public/videos/
         working-directory: ui-test
 
-      - name: Merge test results into one
-        run: npm run report:merge
-        working-directory: ui-test
+      # - name: Merge test results into one
+      #   run: npm run report:merge
+      #   working-directory: ui-test
 
-      - name: Generate HTML report
-        run: npm run report:generate
-        working-directory: ui-test
+      # - name: Generate HTML report
+      #   run: npm run report:generate
+      #   working-directory: ui-test
 
         
       # - name: Deploy report page
