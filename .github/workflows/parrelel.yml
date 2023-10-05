@@ -47,6 +47,8 @@ jobs:
 
   generateReport:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/included:12.17.1
     needs: cypress-run
     steps:
       - uses: actions/checkout@v3
