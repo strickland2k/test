@@ -58,6 +58,14 @@ jobs:
         run: ls -R
         working-directory: cypress/results/json/my-artifact1/
 
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ui-test
+
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: cypress
+
       - name: Copy test execution videos
         run: |
           mkdir public
