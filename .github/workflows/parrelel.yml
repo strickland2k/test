@@ -42,7 +42,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
+          name: my-artifact ${{ matrix.containers }}
           path: /__w/test/test/ui-test/cypress/results/json/
 
   # generateReport:
