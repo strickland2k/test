@@ -22,12 +22,11 @@ jobs:
         with:
           # Starts web server for E2E tests - replace with your own server invocation
           # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-          start: npx cypress run --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json --record true --group CypressRun
+          start: npx cypress run --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json --record true --group GithubActions --parallel
           working-directory: ui-test
           # Records to Cypress Cloud
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
-          parallel: true # Runs test in parallel using settings above
         env:
           # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
           # in GitHub repo → Settings → Secrets → Actions
@@ -41,22 +40,22 @@ jobs:
           mkdir public
           cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: /__w/test/test/ui-test/public/
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: my-artifact
+      #     path: /__w/test/test/ui-test/public/
 
-  generateReport:
-    runs-on: ubuntu-latest
-    needs: cypress-run
-    steps:
-      - name: Merge test results into one
-        working-directory: ui-test
-        run: npm run report:merge
+  # generateReport:
+  #   runs-on: ubuntu-latest
+  #   needs: cypress-run
+  #   steps:
+  #     - name: Merge test results into one
+  #       working-directory: ui-test
+  #       run: npm run report:merge
 
-      - name: Generate HTML report
-        working-directory: ui-test
-        run: npm run report:generate
+  #     - name: Generate HTML report
+  #       working-directory: ui-test
+  #       run: npm run report:generate
 
         
       # - name: Deploy report page
