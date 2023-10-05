@@ -69,7 +69,7 @@ jobs:
       - name: Copy test execution videos
         run: |
           mkdir public
-          cp -r ui-test/cypress/results/json/my-artifact1/videos/ public/videos/
+          cp -r /home/runner/work/test/test/ui-test/cypress/results/json/my-artifact1/videos/ public/videos/
         working-directory: ui-test
 
       # - name: Merge test results into one
