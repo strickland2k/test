@@ -47,8 +47,6 @@ jobs:
 
   generateReport:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/included:12.17.1
     needs: cypress-run
     steps:
       - uses: actions/checkout@v3
@@ -60,14 +58,15 @@ jobs:
         run: ls -R
         working-directory: cypress/results/json/my-artifact1/
 
-      - name: Merge test results into one
-        working-directory: ui-test
+      - name: Copy test execution videos
         run: |
           mkdir public
-          npm run report:merge
+          cp -r /home/runner/work/test/test/ui-test/cypress/results/json/videos/ public/videos/
+
+      - name: Merge test results into one
+        run: npm run report:merge
 
       - name: Generate HTML report
-        working-directory: ui-test
         run: npm run report:generate
 
         
