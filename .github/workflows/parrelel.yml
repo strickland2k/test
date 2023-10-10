@@ -66,11 +66,12 @@ jobs:
       #   run: ls -R
       #   working-directory: cypress
 
+      - name: Create public Directory
+        run: mkdir public
+        working-directory: ui-test
 
       - name: Copy test execution videos
-        run: |
-          mkdir public
-          cp -r /home/runner/work/test/test/ui-test/cypress/results/json/my-artifact1/videos/ public/videos/
+        run: cp -r /home/runner/work/test/test/ui-test/cypress/results/json/*/videos/ public/videos/
 
       - name: Merge test results into one
         run: npm run report:merge
