@@ -56,7 +56,7 @@ jobs:
 
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: /home/runner/work/test/test/ui-test/cypress/results/json
+        working-directory: /home/runner/work/test/test/ui-test/cypress/results/json/
 
       # - name: Display structure of downloaded files
       #   run: ls -R
@@ -68,7 +68,7 @@ jobs:
 
       - name: Create public Directory
         run: mkdir public
-        working-directory: ui-test
+        working-directory: /home/runner/work/test/test/ui-test/
 
       - name: Copy test execution videos
         run: |
