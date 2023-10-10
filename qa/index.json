@@ -1,33 +1,33 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 4,
-    "passes": 1,
+    "suites": 3,
+    "tests": 10,
+    "passes": 3,
     "pending": 0,
-    "failures": 3,
-    "testsRegistered": 4,
-    "passPercent": 25,
+    "failures": 7,
+    "testsRegistered": 10,
+    "passPercent": 30,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2023-09-28T19:02:42.070Z",
-    "end": "2023-09-28T19:03:26.059Z",
-    "duration": 43989
+    "start": "2023-10-10T11:57:16.626Z",
+    "end": "2023-10-10T11:58:11.378Z",
+    "duration": 54752
   },
   "results": [
     {
-      "uuid": "f09c3392-d437-48ff-8bdd-6fe1e5c2d0da",
+      "uuid": "fd3aa41f-fe91-4d74-a579-afc9b3789d1a",
       "title": "",
-      "fullFile": "cypress/e2e/contentManager/test.cy.js",
-      "file": "cypress/e2e/contentManager/test.cy.js",
+      "fullFile": "cypress/e2e/contentManager/test3.cy.js",
+      "file": "cypress/e2e/contentManager/test3.cy.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "c14dc3f8-e1a2-4213-b9db-4488288a4742",
+          "uuid": "978f590d-67e6-4faa-ae51-a53097115468",
           "title": "BEANS",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,135 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 5431,
+              "duration": 6999,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test3.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test3.cy.js:9:32)",
+                "diff": null
+              },
+              "uuid": "6494b525-eff5-4c8a-9027-affbea2b7f13",
+              "parentUUID": "978f590d-67e6-4faa-ae51-a53097115468",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 6951,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test3.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test3.cy.js:12:32)",
+                "diff": null
+              },
+              "uuid": "64207022-8290-4bb6-9fd4-2e4a106ff38a",
+              "parentUUID": "978f590d-67e6-4faa-ae51-a53097115468",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 6453,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test3.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test3.cy.js:15:32)",
+                "diff": null
+              },
+              "uuid": "00919c2b-dbe8-429d-bd1b-4ef45af75e73",
+              "parentUUID": "978f590d-67e6-4faa-ae51-a53097115468",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 1640,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/test3.cy.js.mp4\"",
+              "code": "cy.log(10);",
+              "err": {},
+              "uuid": "c3deb5bc-83a9-472b-b90e-2d9f7ff5a1b2",
+              "parentUUID": "978f590d-67e6-4faa-ae51-a53097115468",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c3deb5bc-83a9-472b-b90e-2d9f7ff5a1b2"
+          ],
+          "failures": [
+            "6494b525-eff5-4c8a-9027-affbea2b7f13",
+            "64207022-8290-4bb6-9fd4-2e4a106ff38a",
+            "00919c2b-dbe8-429d-bd1b-4ef45af75e73"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 22043,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "180bf371-6777-46c0-8bae-975e3539628e",
+      "title": "",
+      "fullFile": "cypress/e2e/contentManager/test.cy.js",
+      "file": "cypress/e2e/contentManager/test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bc87a921-d983-44a1-b9c1-0cf8793272bf",
+          "title": "BEANS",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 6318,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +179,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test.cy.js:9:32)",
                 "diff": null
               },
-              "uuid": "16771755-d843-463e-992c-b45e9043c860",
-              "parentUUID": "c14dc3f8-e1a2-4213-b9db-4488288a4742",
+              "uuid": "4f5ce781-73a3-4aaf-88df-6bccbada0585",
+              "parentUUID": "bc87a921-d983-44a1-b9c1-0cf8793272bf",
               "isHook": false,
               "skipped": false
             },
@@ -60,7 +188,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 5691,
+              "duration": 6865,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -73,8 +201,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test.cy.js:12:32)",
                 "diff": null
               },
-              "uuid": "b17737ab-ef29-44ce-82f8-94d78c874ec5",
-              "parentUUID": "c14dc3f8-e1a2-4213-b9db-4488288a4742",
+              "uuid": "690c2cd7-f823-48bf-a868-a7240c60065f",
+              "parentUUID": "bc87a921-d983-44a1-b9c1-0cf8793272bf",
               "isHook": false,
               "skipped": false
             },
@@ -82,7 +210,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 5924,
+              "duration": 6560,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -95,8 +223,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test.cy.js:15:32)",
                 "diff": null
               },
-              "uuid": "a6c41171-8f09-4c83-8ad1-ddfb696f93d2",
-              "parentUUID": "c14dc3f8-e1a2-4213-b9db-4488288a4742",
+              "uuid": "b3bd8d35-6fc7-4f5e-9fb9-5b2642ccb853",
+              "parentUUID": "bc87a921-d983-44a1-b9c1-0cf8793272bf",
               "isHook": false,
               "skipped": false
             },
@@ -104,7 +232,7 @@
               "title": "PODS",
               "fullTitle": "BEANS PODS",
               "timedOut": null,
-              "duration": 1035,
+              "duration": 1094,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -113,24 +241,106 @@
               "context": "\"videos/test.cy.js.mp4\"",
               "code": "cy.log(10);",
               "err": {},
-              "uuid": "9afd40b1-ebb7-4d5a-9e97-f92e416fbd9b",
-              "parentUUID": "c14dc3f8-e1a2-4213-b9db-4488288a4742",
+              "uuid": "2e4eb433-86d7-4ac7-a59c-88ee2fff2971",
+              "parentUUID": "bc87a921-d983-44a1-b9c1-0cf8793272bf",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "9afd40b1-ebb7-4d5a-9e97-f92e416fbd9b"
+            "2e4eb433-86d7-4ac7-a59c-88ee2fff2971"
           ],
           "failures": [
-            "16771755-d843-463e-992c-b45e9043c860",
-            "b17737ab-ef29-44ce-82f8-94d78c874ec5",
-            "a6c41171-8f09-4c83-8ad1-ddfb696f93d2"
+            "4f5ce781-73a3-4aaf-88df-6bccbada0585",
+            "690c2cd7-f823-48bf-a868-a7240c60065f",
+            "b3bd8d35-6fc7-4f5e-9fb9-5b2642ccb853"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 18081,
+          "duration": 20837,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "0f52761a-7eba-4215-84d6-2b9a45870eba",
+      "title": "",
+      "fullFile": "cypress/e2e/contentManager/test2.cy.js",
+      "file": "cypress/e2e/contentManager/test2.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e5089651-d093-42ca-bc04-220c28ac0005",
+          "title": "BEANS",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "BEANS",
+              "fullTitle": "BEANS BEANS",
+              "timedOut": null,
+              "duration": 6240,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test2.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test2.cy.js:9:32)",
+                "diff": null
+              },
+              "uuid": "080ef3d1-f076-40cc-b6c4-bae7eb537d1c",
+              "parentUUID": "e5089651-d093-42ca-bc04-220c28ac0005",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "BEAN3",
+              "fullTitle": "BEANS BEAN3",
+              "timedOut": null,
+              "duration": 1399,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/test2.cy.js.mp4\"",
+              "code": "cy.log(10);",
+              "err": {},
+              "uuid": "beea0043-d351-4267-8efd-0da61042ddaa",
+              "parentUUID": "e5089651-d093-42ca-bc04-220c28ac0005",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "beea0043-d351-4267-8efd-0da61042ddaa"
+          ],
+          "failures": [
+            "080ef3d1-f076-40cc-b6c4-bae7eb537d1c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 7639,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
