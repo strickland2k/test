@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 1,
+    "pending": 0,
+    "failures": 3,
+    "testsRegistered": 4,
+    "passPercent": 25,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2023-10-23T08:16:21.555Z",
+    "end": "2023-10-23T08:17:01.511Z",
+    "duration": 39956
+  },
+  "results": [
+    {
+      "uuid": "68b635d6-58cc-4d06-9659-2133a19d812a",
+      "title": "",
+      "fullFile": "cypress/e2e/contentManager/test.cy.js",
+      "file": "cypress/e2e/contentManager/test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8e25d2c3-6cc0-40b9-9012-cff8416bbfcd",
+          "title": "BEANS",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 6029,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test.cy.js:9:32)",
+                "diff": null
+              },
+              "uuid": "76c0f627-5f13-418f-82e8-8d5323d3f001",
+              "parentUUID": "8e25d2c3-6cc0-40b9-9012-cff8416bbfcd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 5682,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test.cy.js:12:32)",
+                "diff": null
+              },
+              "uuid": "1e2d21f7-1855-45e3-89da-fb29f2ab9e30",
+              "parentUUID": "8e25d2c3-6cc0-40b9-9012-cff8416bbfcd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 5446,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/test.cy.js.mp4\"",
+              "code": "cy.get('.todo-list li').should('have.length', 10);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.todo-list li`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/contentManager/test.cy.js:15:32)",
+                "diff": null
+              },
+              "uuid": "ea891aa2-318d-4d74-a9ab-6d042aaf0fb5",
+              "parentUUID": "8e25d2c3-6cc0-40b9-9012-cff8416bbfcd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PODS",
+              "fullTitle": "BEANS PODS",
+              "timedOut": null,
+              "duration": 1191,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/test.cy.js.mp4\"",
+              "code": "cy.log(10);",
+              "err": {},
+              "uuid": "129e7988-1e87-4d39-ab02-b04e75b9e292",
+              "parentUUID": "8e25d2c3-6cc0-40b9-9012-cff8416bbfcd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "129e7988-1e87-4d39-ab02-b04e75b9e292"
+          ],
+          "failures": [
+            "76c0f627-5f13-418f-82e8-8d5323d3f001",
+            "1e2d21f7-1855-45e3-89da-fb29f2ab9e30",
+            "ea891aa2-318d-4d74-a9ab-6d042aaf0fb5"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 18348,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/json",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
