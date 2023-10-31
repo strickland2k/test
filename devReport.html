@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cypress QA Reports</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        nav#backButton {
+            position: absolute;
+            bottom: 10px;
+            left: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>CYPRESS REPORTS</p>
+
+        <nav id="backButton">
+            <a class="cta-button" href="index.html">Home</a>
+        </nav>
+    </header>
+    <main>
+        <h2>QA Env Reports</h2>
+        <p><nav id="dynamicNav">
+        </nav></p>
+    </main>
+    <footer>
+        <p>&copy; Cypress Reports </p>
+    </footer>
+    <script>
+        // JavaScript code to dynamically generate navigation links
+        document.addEventListener("DOMContentLoaded", function () {
+            var dynamicNav = document.getElementById("dynamicNav");
+            // Directory where your HTML pages are located
+            var baseDirectory = "qa/run-";
+            // Calculate the date range for the last 60 days
+            var endDate = new Date();
+            var startDate = new Date();
+            startDate.setDate(endDate.getDate() - 60); // 60 days ago
+            var currentDate = new Date(endDate); // Start from the current date and go backward
+            
+            var currentMonthContainer = null; // Container for the current month
+            var monthReports = {}; // Create an object to store the reports for each month
+
+            // Loop through dates and generate navigation links in reverse order (counting down)
+            while (currentDate >= startDate) {
+                var formattedDate = currentDate.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+                var link = document.createElement("a");
+                link.href = baseDirectory + formattedDate + "/index.html"; // Adjust path
+                link.textContent = "Report for " + formattedDate;
+
+                // Check if a new month has started
+                var month = currentDate.toLocaleString('default', { month: 'long' });
+                if (!monthReports[month]) {
+                    // Initialize the reports array for the month
+                    monthReports[month] = [];
+                }
+
+                // Add the link to the reports array for the current month
+                monthReports[month].push(link);
+
+                currentDate.setDate(currentDate.getDate() - 1); // Move to the previous day
+            }
+
+            // Loop through the months and append reports for each month
+            for (var month in monthReports) {
+                if (monthReports.hasOwnProperty(month)) {
+                    var monthContainer = document.createElement("div");
+                    monthContainer.className = "month-container";
+                    monthContainer.dataset.month = month;
+
+                    var monthHeader = document.createElement("h3");
+                    monthHeader.textContent = month;
+                    monthContainer.appendChild(monthHeader);
+
+                    var monthList = document.createElement("ul");
+                    monthReports[month].forEach(function (link) {
+                        var listItem = document.createElement("li");
+                        listItem.appendChild(link);
+                        monthList.appendChild(listItem);
+
+                        // Add a horizontal line (<hr>) between report links within the same month
+                        if (monthReports[month].indexOf(link) < monthReports[month].length - 1) {
+                            var separator = document.createElement("hr");
+                            monthList.appendChild(separator);
+                        }
+                    });
+
+                    monthContainer.appendChild(monthList);
+                    dynamicNav.appendChild(monthContainer);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
