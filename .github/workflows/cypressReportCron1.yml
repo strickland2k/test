@@ -1,8 +1,8 @@
 # action.yml
 name: DevEnv Tests
-on: 
-  schedule:
-    - cron: '0 8 1-31 * *'
+on:  push
+  # schedule:
+  #   - cron: '0 8 1-31 * *'
 
 
 jobs:
@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-
 
       - name: Remove Old Date
         working-directory: ui-test
@@ -23,7 +21,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ui-test
-          command: npx cypress run --spec cypress/e2e/contentManager/test2.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+          command: npx cypress run --spec cypress/e2e/contentManager/*.cy.js --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
       - name: Copy test execution videos
         working-directory: ui-test
         run: |
