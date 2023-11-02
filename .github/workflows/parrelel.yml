@@ -41,7 +41,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact${{ matrix.containers }}
-          path: /__w/test/test/ui-test/cypress/results/json/
+          path: /home/runner/work/test/test/ui-test/cypress/results/json/
 
   # generateReport:
   #   runs-on: ubuntu-latest
