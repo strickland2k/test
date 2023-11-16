@@ -1,9 +1,6 @@
 name: Identify Modified Support Folders
 
-on:
-  pull_request:
-    branches:
-      - '*'
+on: push
 
 jobs:
   identify-folders:
