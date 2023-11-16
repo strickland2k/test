@@ -23,5 +23,5 @@ jobs:
       - name: Identify modified support folders
         id: identify-folders
         run: |
-          changed_files=$(git diff --name-only remotes/origin/main "${GITHUB_HEAD_REF}")
+          changed_files=$(git diff --name-only remotes/origin/master "${GITHUB_HEAD_REF}")
           echo "::set-output name=files::${changed_files}"
