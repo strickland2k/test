@@ -30,4 +30,6 @@ jobs:
 
       - name: Display Changed Files
         run: |
+         ls -la
+
          echo "Changed files: ${{ steps.identify-folders.outputs }}"
