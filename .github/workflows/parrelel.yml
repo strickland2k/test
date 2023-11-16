@@ -36,4 +36,4 @@ jobs:
 
          ls -la
 
-         echo "Changed files: ${{ steps.identify-folders.outputs }}"
+         echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
