@@ -30,10 +30,7 @@ jobs:
 
       - name: Display Changed Files
         run: |
-         ls -la
 
-         cd ui-test
+         echo "Changed files: ${{ steps.identify-folders.outputs.files }}
 
-         ls -la
-
-         echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
+         working_directory: test/ui-test
