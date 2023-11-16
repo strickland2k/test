@@ -31,4 +31,4 @@ jobs:
       - name: Display Changed Files
         run: |
          echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
-        working-directory: test/ui-test
+        working-directory: ui-test
