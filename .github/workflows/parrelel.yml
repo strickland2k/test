@@ -28,6 +28,9 @@ jobs:
           # Set the output variable for further use
           echo "::set-output name=files::${changed_files}"
 
+          echo $changed_files
+
+
       - name: Display Changed Files
         run: |
          echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
