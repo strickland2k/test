@@ -1,96 +1,27 @@
-name: Cypress Tests
-on: push
+name: Cypress - PR Run
+
+on:
+  push:
+
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    # Runs tests in parallel with matrix strategy https://docs.cypress.io/guides/guides/parallelization
-    # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
-    # Also see warning here https://github.com/cypress-io/github-action#parallel
-    strategy:
-      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
-      matrix:
-        containers: [1, 2, 3] # Uses 2 parallel instances
+  identify-files:
+    runs-on: music-testing-default
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Cypress run
-        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-        uses: cypress-io/github-action@v6
-        continue-on-error: true
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
-          # Starts web server for E2E tests - replace with your own server invocation
-          # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-          start: npx cypress run --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json --record true --group GithubActions --parallel
-          working-directory: ui-test
-          # Records to Cypress Cloud
-          # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-          record: false
-        env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in GitHub repo → Settings → Secrets → Actions
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          path: 'test/ui-test/cypress/support/page_objects'
 
-      - name: Copy test execution videos
-        working-directory: ui-test
+      - name: Verify Remote Branch
+        run: git branch -a
+
+      - name: Fetch Main Branch
+        run: git fetch origin main:refs/remotes/origin/main
+
+      - name: Identify modified support folders
+        id: identify-folders
         run: |
-          mkdir public
-          cp -r /__w/test/test/ui-test/cypress/videos/ cypress/results/json/videos/
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact${{ matrix.containers }}
-          path: /home/runner/work/test/test/ui-test/cypress/results/json/
-
-  # generateReport:
-  #   runs-on: ubuntu-latest
-  #   needs: cypress-run
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/download-artifact@v3
-  #       with:
-  #         path: /home/runner/work/test/test//ui-test/cypress/results/json/
-
-  #     - name: Display structure of downloaded files
-  #       run: ls -R
-  #       working-directory: /home/runner/work/test/test/ui-test/cypress/results/json/
-
-  #     # - name: Display structure of downloaded files
-  #     #   run: ls -R
-  #     #   working-directory: ui-test
-
-  #     # - name: Display structure of downloaded files
-  #     #   run: ls -R
-  #     #   working-directory: cypress
-
-  #     - name: Create public Directory
-  #       run: mkdir public
-  #       working-directory: /home/runner/work/test/test/ui-test/
-
-  #     - name: Copy test execution videos
-  #       run: |
-  #         cp -r cypress/results/json/my-artifact1/videos/ public/videos/
-  #         cp -r cypress/results/json/my-artifact2/videos/ public/videos/
-  #         cp -r cypress/results/json/my-artifact3/videos/ public/videos/
-  #       working-directory: ui-test
-
-  #     - name: Merge test results into one
-  #       run: npm run report:merge
-  #       working-directory: ui-test
-
-  #     - name: Generate HTML report
-  #       run: npm run report:generate
-  #       working-directory: ui-test
-
-  #     - name: Get current date
-  #       id: date
-  #       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-
-  #     - name: Deploy report page
-  #       uses: peaceiris/actions-gh-pages@v3
-  #       with:
-  #         publish_dir: /home/runner/work/test/test/ui-test/public
-  #         destination_dir: qa/run-${{ steps.date.outputs.date }}/
-  #         keep_files: false
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+          changed_files=$(git diff --name-only remotes/origin/main "${GITHUB_HEAD_REF}")
+          echo "::set-output name=files::${changed_files}"
