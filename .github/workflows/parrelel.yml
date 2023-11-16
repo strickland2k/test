@@ -32,4 +32,8 @@ jobs:
         run: |
          ls -la
 
+         cd ui-test
+
+         ls -la
+
          echo "Changed files: ${{ steps.identify-folders.outputs }}"
