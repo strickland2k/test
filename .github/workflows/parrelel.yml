@@ -14,6 +14,12 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.before }} # This ensures that we fetch the full history
 
+      - name: Verify Remote Branch
+        run: git branch -a
+
+      - name: Fetch Main Branch
+        run: git fetch origin main:refs/remotes/origin/main
+
       - name: Identify Modified Support Folders
         id: identify-folders
         run: |
