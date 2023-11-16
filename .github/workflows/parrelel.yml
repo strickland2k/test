@@ -30,4 +30,4 @@ jobs:
 
       - name: Display Changed Files
         run: |
-         echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
+         echo "Changed files: ${{ steps.identify-folders.outputs }}"
