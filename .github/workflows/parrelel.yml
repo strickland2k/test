@@ -12,13 +12,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          path: 'test/ui-test/cypress/support/page_objects'
+          # path: 'test/ui-test/cypress/support/page_objects'
 
-      # - name: Verify Remote Branch
-      #   run: git branch -a
+      - name: Verify Remote Branch
+        run: git branch -a
 
-      # - name: Fetch Main Branch
-      #   run: git fetch origin main:refs/remotes/origin/master
+      - name: Fetch Main Branch
+        run: git fetch origin master:refs/remotes/origin/master
 
       - name: Identify modified support folders
         id: identify-folders
