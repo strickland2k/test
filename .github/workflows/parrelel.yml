@@ -1,10 +1,9 @@
-name: Identify Modified Support Folders
+name: Cypress Tests
 
 on: push
-  
 
 jobs:
-  identify-folders:
+  cypress-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,18 +12,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Switch to Main Branch
-        run: git checkout master
-
-      - name: Identify Modified Support Folders
-        id: identify-folders
+      - name: Get Changed Files
+        id: changed_files
         run: |
-          # Identify changed files between main and the push commit
-          changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
-
-          # Set the output variable for further use
+          # Use git commands or GitHub API to get the list of changed files
+          changed_files=$(git diff --name-only origin/main...HEAD)
           echo "::set-output name=files::${changed_files}"
 
-      - name: Display Changed Files
+      - name: Run Cypress Tests
         run: |
-         echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
+          # Install dependencies and run Cypress tests
+          npm install
+          npx cypress run --spec "${{ steps.changed_files.outputs.files }}"
