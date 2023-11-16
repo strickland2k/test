@@ -1,10 +1,12 @@
-name: Cypress - PR Run
+name: Identify Modified Support Folders
 
 on:
-  push:
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
-  identify-files:
+  identify-folders:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,16 +14,19 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          # path: 'test/ui-test/cypress/support/page_objects'
 
-      - name: Verify Remote Branch
-        run: git branch -a
-
-      - name: Fetch Main Branch
-        run: git fetch origin master:refs/remotes/origin/master
-
-      - name: Identify modified support folders
+      - name: Identify Modified Support Folders
         id: identify-folders
         run: |
-          changed_files=$(git diff --name-only remotes/origin/master "${GITHUB_HEAD_REF}")
+          # Ensure we have the latest from the remote
+          git fetch origin
+
+          # Identify changed files between master and the pull request branch
+          changed_files=$(git diff --name-only origin/master "${GITHUB_HEAD_REF}")
+
+          # Set the output variable for further use
           echo "::set-output name=files::${changed_files}"
+
+      - name: Display Changed Files
+        run: |
+         echo "Changed files: ${{ steps.identify-folders.outputs.files }}"
