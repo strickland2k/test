@@ -5,7 +5,7 @@ on:
 
 jobs:
   identify-files:
-    runs-on: music-testing-default
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
