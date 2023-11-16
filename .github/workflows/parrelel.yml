@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Identify Modified Support Folders
 
 on: push
 
@@ -11,6 +11,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Switch to Main Branch
+        run: git checkout master
 
       - name: Get Changed Files
         id: changed_files
