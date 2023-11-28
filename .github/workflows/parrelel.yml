@@ -17,8 +17,20 @@ jobs:
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
       
-          # Set an environment variable with the list of changed files
-          echo "CHANGED_FILES='${changed_files}'" >> $GITHUB_ENV
+          # Initialize an array to store JS files
+          js_files=()
+      
+          # Loop through each changed file
+          for file in $changed_files; do
+            # Check if the file has a ".js" extension
+            if [[ $file == *.js ]]; then
+              # Append the file to the array
+              js_files+=("$file")
+            fi
+          done
+      
+          # Set an environment variable with the list of changed JS files
+          echo "CHANGED_JS_FILES='${js_files[@]}'" >> $GITHUB_ENV
 
   display-changed-files:
     needs: identify-folders
