@@ -28,6 +28,9 @@ jobs:
               js_files+=("$file")
             fi
           done
+
+          # Debugging: Print the value of changed_files to the console
+          echo "Changed files: $js_files"
       
           # Set an environment variable with the list of changed JS files
           echo "CHANGED_JS_FILES='${js_files[@]}'" >> $GITHUB_ENV
