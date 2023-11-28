@@ -9,10 +9,6 @@ jobs:
   identify-folders:
     runs-on: ubuntu-latest
 
-    outputs:
-      id: identify-folders
-      value: ${{ steps.set-files.outputs.files }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,13 +16,12 @@ jobs:
           fetch-depth: 0
       
       - name: Identify Modified Support Folders
-        id: set-files
         run: |
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
 
-          # Set the output variable for further use
-          echo "::set-output name=files::${changed_files}"
+          # Set an environment variable with the list of changed files
+          echo "CHANGED_FILES=${changed_files}" >> $GITHUB_ENV
 
   display-changed-files:
     needs: identify-folders
@@ -35,5 +30,5 @@ jobs:
     steps:
       - name: Display Changed Files
         run: |
-          echo "Changed files: ${{ needs.identify-folders.outputs.files }}"
+          echo "Changed files: $CHANGED_FILES"
         working-directory: ui-test
