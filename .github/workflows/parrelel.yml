@@ -16,9 +16,9 @@ jobs:
         run: |
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
-
+      
           # Set an environment variable with the list of changed files
-          echo "CHANGED_FILES=${changed_files}" >> $GITHUB_ENV
+          echo "CHANGED_FILES='${changed_files}'" >> $GITHUB_ENV
 
   display-changed-files:
     needs: identify-folders
