@@ -1,7 +1,7 @@
 name: Identify Modified Support Folders
 
 on:
-  pull_request:
+  push:
     paths:
       - 'ui-test/**'
 
