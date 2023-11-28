@@ -1,11 +1,17 @@
 name: Identify Modified Support Folders
 
-on: push
-  
+on:
+  pull_request:
+    paths:
+      - 'ui-test/**'
 
 jobs:
   identify-folders:
     runs-on: ubuntu-latest
+
+    outputs:
+      id: identify-folders
+      value: ${{ steps.set-files.outputs.files }}
 
     steps:
       - name: Checkout code
@@ -13,14 +19,8 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Verify Remote Branch
-        run: git branch -a
-
-      - name: Checkout Remote Branch
-        run: git checkout origin/master
-
       - name: Identify Modified Support Folders
-        id: identify-folders
+        id: set-files
         run: |
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
@@ -28,6 +28,11 @@ jobs:
           # Set the output variable for further use
           echo "::set-output name=files::${changed_files}"
 
+  display-changed-files:
+    needs: identify-folders
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Display Changed Files
         run: |
           echo "Changed files: ${{ needs.identify-folders.outputs.files }}"
