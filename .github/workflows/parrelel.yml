@@ -57,4 +57,4 @@ jobs:
       - name: Use Cypress file paths
         run: |
           # Access environment variable for Cypress file paths in another step
-          echo "Using Cypress file paths: $MY_ENV_VARIABLE"
+          echo "Using Cypress file paths: $CYPRESS_PATHS"
