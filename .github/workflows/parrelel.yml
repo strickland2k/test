@@ -37,18 +37,24 @@ jobs:
       - name: Build Cypress file paths
         id: build_cypress_paths
         run: |
-          # Access environment variable to build Cypress file paths
-          cypress_paths=""
-          for js_file in $JS_FILES; do
-            cypress_path="./${js_file%.*}/**.cy.js"
-            cypress_paths="$cypress_paths $cypress_path"
-          done
-
-          echo "Cypress file paths:"
-          echo "$cypress_paths"
-
-          # Set environment variable for Cypress file paths
-          echo "CYPRESS_PATHS=$cypress_paths" >> $GITHUB_ENV
+            # Split CHANGED_FILES string into an array
+            IFS=' ' read -r -a files_array <<< "$CHANGED_FILES"
+        
+            # Access environment variable to build Cypress file paths
+            cypress_paths=""
+            for file_path in "${files_array[@]}"; do
+              # Process each file path and create the Cypress path
+              if [[ $file_path =~ \.js$ && ! $file_path =~ \.cy\.js$ ]]; then
+                cypress_path="./${file_path%.*}/**/*.cy.js"
+                cypress_paths="$cypress_paths $cypress_path"
+              fi
+            done
+        
+            echo "Cypress file paths:"
+            echo "$cypress_paths"
+        
+            # Set environment variable for Cypress file paths
+            echo "CYPRESS_PATHS=$cypress_paths" >> $GITHUB_ENV
             
 
       - name: Use Cypress file paths
