@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          path: /home/runner/work/test/test/bean
+          path: /home/runner/work/test/test/ui-test/cypress/support
       
       - name: Extract JS files
         id: extract_js
