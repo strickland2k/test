@@ -1,13 +1,13 @@
 name: Identify Modified Support Folders
 
-on: push
+on:
+  pull_request:
+    paths:
+      - 'ui-test/**'
 
 jobs:
   identify-folders:
     runs-on: ubuntu-latest
-
-    outputs:
-      files: ${{ steps.set-files.outputs.files }}
 
     steps:
       - name: Checkout code
@@ -24,10 +24,12 @@ jobs:
           # Debugging: Print the value of changed_files to the console
           echo "Changed files: $changed_files"
 
-          # Set an environment variable with the list of changed files
-          echo 'changed_files<<EOF' >> $GITHUB_OUTPUT
-          echo $multiLine >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT"
+          # Append multi-line content to a file using the list of changed files
+          echo 'RESULT<<EOF' >> $GITHUB_ENV
+          for file in $changed_files; do
+            echo "$file"
+          done >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
   display-changed-files:
     needs: identify-folders
@@ -36,5 +38,6 @@ jobs:
     steps:
       - name: Display Changed Files
         run: |
-          echo "Changed files: ${{ needs.identify-folders.outputs.files }}"
+          echo "Changed files:"
+          cat $GITHUB_ENV
         working-directory: ${{ github.workspace }}
