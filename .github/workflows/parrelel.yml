@@ -21,10 +21,10 @@ jobs:
           echo "Changed files: $changed_files"
 
           # Append multi-line content to a file using the list of changed files
-          echo 'Changed files:' >> $GITHUB_ENV
+          echo 'Changed files:' > $GITHUB_ENV
           for file in $changed_files; do
-            echo "$file"
-          done >> $GITHUB_ENV
+            echo "$file" >> $GITHUB_ENV
+          done
 
           # Display the content
           cat $GITHUB_ENV
