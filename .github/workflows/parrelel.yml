@@ -21,7 +21,8 @@ jobs:
           # Debugging: Print the value of changed_files to the console
           echo "Changed files: $changed_files"
 
-          js_files=$(echo "$changed_files" | grep -E '\.js$' | grep -vE '\.cy\.js$' | sed 's|.*/\([^/]*\.js\)|\1|')
+          IFS=$'\n' # Set Internal Field Separator to handle file names with spaces
+          js_files=($(echo "$changed_files" | grep -E '\.js$' | grep -vE '\.cy\.js$' | sed 's|.*/\([^/]*\.js\)|\1|'))
 
           echo "filtered files: $js_files"
 
