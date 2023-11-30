@@ -20,11 +20,11 @@ jobs:
           # Debugging: Print the value of changed_files to the console
           echo "Changed files: $changed_files"
 
-          # Append multi-line content to a file using the list of changed files
-          echo 'Changed files:' > $GITHUB_ENV
-          for file in $changed_files; do
-            echo "$file" >> $GITHUB_ENV
-          done
+          # Save the multi-line content to an environment variable
+          echo "CHANGED_FILES=$changed_files" >> $GITHUB_ENV
 
-          # Display the content
-          cat $GITHUB_ENV
+      - name: Use the environment variable in another step
+        run: |
+          # Access the environment variable in another step
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
