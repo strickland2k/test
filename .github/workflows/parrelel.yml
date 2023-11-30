@@ -66,6 +66,10 @@ jobs:
           # Access environment variable for Cypress file paths in another step
           echo "Using Cypress file paths: $CYPRESS_PATHS"
 
+
+      - name: Set up Cypress
+        uses: cypress-io/github-action@v6
+
       - name: Extract file paths from GITHUB_ENV
         continue-on-error: true
         working-directory: ui-test
