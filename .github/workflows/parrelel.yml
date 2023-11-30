@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      id: identify-folders-output
       files: ${{ steps.set-files.outputs.files }}
 
     steps:
@@ -26,10 +25,7 @@ jobs:
           echo "Changed files: $changed_files"
 
           # Set an environment variable with the list of changed files
-          echo "CHANGED_FILES=${changed_files}" >> $GITHUB_ENV
-
-          # Set an output variable with the list of changed files
-          echo "::set-output name=files::${changed_files}"
+          echo "CHANGED_FILES=${changed_files}" >> $GITHUB_OUTPUT
 
   display-changed-files:
     needs: identify-folders
