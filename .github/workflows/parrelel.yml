@@ -52,7 +52,7 @@ jobs:
             # Access environment variable to build Cypress file paths
             cypress_paths=""
             for file_path in "${files_array[@]}"; do
-              cypress_path="cypress/e2e/**/${file_path%.*}/**/*.cy.js"
+              cypress_path="${file_path%.*}/**/*.cy.js"
               cypress_paths="$cypress_paths \"$cypress_path\""
             done
         
@@ -79,7 +79,7 @@ jobs:
           IFS=' ' read -ra TEST_FILES <<< "$CYPRESS_PATHS" # Split string into array
           for file in "${TEST_FILES[@]}"; do
             echo "Running Cypress test for $file"
-            npx cypress run --spec "$file" --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+            npx cypress run --spec "cypress/e2e/**/$file" --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
           done
         env:
           CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
