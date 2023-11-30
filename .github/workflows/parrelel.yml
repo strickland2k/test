@@ -7,17 +7,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Print current directory
-        run: |
-          echo "Current directory: $PWD"
-          ls   # List the contents of the current directory
-
-
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Cypress dependencies
+        run: |
+          sudo apt update
+          sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       
       - name: Extract JS files
         id: extract_js
@@ -79,3 +81,6 @@ jobs:
             echo "Running Cypress test for $file"
             npx cypress run --spec "$file" --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
           done
+        env:
+          CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
+          CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
