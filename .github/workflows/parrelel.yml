@@ -25,7 +25,9 @@ jobs:
           echo "Changed files: $changed_files"
 
           # Set an environment variable with the list of changed files
-          echo "CHANGED_FILES=${changed_files}" >> $GITHUB_OUTPUT
+          echo 'changed_files<<EOF' >> $GITHUB_OUTPUT
+          echo $multiLine >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT"
 
   display-changed-files:
     needs: identify-folders
