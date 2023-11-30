@@ -66,16 +66,13 @@ jobs:
           # Access environment variable for Cypress file paths in another step
           echo "Using Cypress file paths: $CYPRESS_PATHS"
 
-
-      - name: Set up Cypress
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: ui-test
-
       - name: Extract file paths from GITHUB_ENV
         continue-on-error: true
         working-directory: ui-test
         run: |
+
+          npm install --save --dev
+
           # Assuming file paths are stored as a single string
           IFS=' ' read -ra TEST_FILES <<< "$CYPRESS_PATHS" # Split string into array
           for file in "${TEST_FILES[@]}"; do
