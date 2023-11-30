@@ -37,14 +37,18 @@ jobs:
       - name: Build Cypress file paths
         id: build_cypress_paths
         run: |
-          # Transform JS file names to Cypress file paths
+          # Access environment variable to build Cypress file paths
           cypress_paths=""
-          for js_file in ${{ steps.extract_js.outputs.js_files }}; do
+          for js_file in $JS_FILES; do
             cypress_path="./${js_file%.*}/**.cy.js"
             cypress_paths="$cypress_paths $cypress_path"
           done
 
           echo "Cypress file paths:"
           echo "$cypress_paths"
+
+          # Set environment variable for Cypress file paths
+          echo "CYPRESS_PATHS=$cypress_paths" >> $GITHUB_ENV
+            
 
           
