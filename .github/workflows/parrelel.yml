@@ -65,3 +65,14 @@ jobs:
         run: |
           # Access environment variable for Cypress file paths in another step
           echo "Using Cypress file paths: $CYPRESS_PATHS"
+
+      - name: Extract file paths from GITHUB_ENV
+        continue-on-error: true
+        working-directory: ui-test
+        run: |
+          # Assuming file paths are stored as a single string
+          IFS=' ' read -ra TEST_FILES <<< "$CYPRESS_PATHS" # Split string into array
+          for file in "${TEST_FILES[@]}"; do
+            echo "Running Cypress test for $file"
+            npx cypress run --spec "$file" --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+          done
