@@ -7,6 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Print current directory
+        run: |
+          echo "Current directory: $PWD"
+          ls   # List the contents of the current directory
+
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
