@@ -69,6 +69,8 @@ jobs:
 
       - name: Set up Cypress
         uses: cypress-io/github-action@v6
+        with:
+          working-directory: ui-test
 
       - name: Extract file paths from GITHUB_ENV
         continue-on-error: true
