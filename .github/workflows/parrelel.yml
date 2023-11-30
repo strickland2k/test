@@ -53,7 +53,7 @@ jobs:
             cypress_paths=""
             for file_path in "${files_array[@]}"; do
               cypress_path="${file_path%.*}/**/*.cy.js"
-              cypress_paths="$cypress_paths \"$cypress_path\""
+              cypress_paths="$cypress_paths \$cypress_path\"
             done
         
             echo "Cypress file paths:"
