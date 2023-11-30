@@ -38,16 +38,13 @@ jobs:
         id: build_cypress_paths
         run: |
             # Split CHANGED_FILES string into an array
-            IFS=' ' read -r -a files_array <<< "$CHANGED_FILES"
+            IFS=' ' read -ra files_array <<< "$CHANGED_FILES"
         
             # Access environment variable to build Cypress file paths
             cypress_paths=""
             for file_path in "${files_array[@]}"; do
-              # Process each file path and create the Cypress path
-              if [[ $file_path =~ \.js$ && ! $file_path =~ \.cy\.js$ ]]; then
-                cypress_path="./${file_path%.*}/**/*.cy.js"
-                cypress_paths="$cypress_paths $cypress_path"
-              fi
+              cypress_path="./${file_path%.*}/**/*.cy.js"
+              cypress_paths="$cypress_paths \"$cypress_path\""
             done
         
             echo "Cypress file paths:"
