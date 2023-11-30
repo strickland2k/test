@@ -73,7 +73,7 @@ jobs:
         working-directory: ui-test
         run: |
 
-          npm install --save --dev
+          npm cypress install --save --dev
 
           # Assuming file paths are stored as a single string
           IFS=' ' read -ra TEST_FILES <<< "$CYPRESS_PATHS" # Split string into array
