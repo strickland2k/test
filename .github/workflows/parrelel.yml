@@ -12,7 +12,8 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Identify Modified Support Folders
+      - name: Extract JS files
+        id: extract_js
         run: |
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
@@ -32,3 +33,18 @@ jobs:
           # Access the environment variable in another step
           echo "Changed files:"
           echo "$CHANGED_FILES"
+
+      - name: Build Cypress file paths
+        id: build_cypress_paths
+        run: |
+          # Transform JS file names to Cypress file paths
+          cypress_paths=""
+          for js_file in ${{ steps.extract_js.outputs.js_files }}; do
+            cypress_path="./${js_file%.*}/**.cy.js"
+            cypress_paths="$cypress_paths $cypress_path"
+          done
+
+          echo "Cypress file paths:"
+          echo "$cypress_paths"
+
+          
