@@ -1,44 +1,35 @@
-name: Identify Modified Support Folders
+name: Build Cypress File Paths
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  identify-folders:
+  build_cypress_file_paths:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      
+
       - name: Extract JS files
         id: extract_js
         run: |
-          # Identify changed files between main and the push commit
-          changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
+          # Get the list of changed files
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
 
-          # Debugging: Print the value of changed_files to the console
-          echo "Changed files: $changed_files"
-
-          js_files=$(echo "$changed_files" | grep -E '\.js$' | grep -vE '\.cy\.js$' | sed 's|.*/\([^/]*\.js\)|\1|')
-
-          echo "filtered files: $js_files"
+          # Use grep and sed to filter out .cy.js files and extract .js files
+          js_files=($(echo "$changed_files" | grep -E '\.js$' | grep -vE '\.cy\.js$' | sed 's|.*/\([^/]*\.js\)|\1|'))
 
           # Concatenate JS files into a single line
-          js_files_concatenated=$(echo "${js_files[*]}")
+          js_files_concatenated=$(IFS=" " ; echo "${js_files[*]}")
 
           echo "Changed JS files:"
           echo "$js_files_concatenated"
 
           # Set environment variable for JS files
           echo "JS_FILES=$js_files_concatenated" >> $GITHUB_ENV
-
-      - name: Use the environment variable in another step
-        run: |
-          # Access the environment variable in another step
-          echo "Changed files:"
-          echo "$CHANGED_FILES"
 
       - name: Build Cypress file paths
         id: build_cypress_paths
@@ -55,7 +46,9 @@ jobs:
 
           # Set environment variable for Cypress file paths
           echo "CYPRESS_PATHS=$cypress_paths" >> $GITHUB_ENV
-            
+
+      - name: Set environment variable
+        run: echo "MY_ENV_VARIABLE=\"$CYPRESS_PATHS\"" >> $GITHUB_ENV
 
       - name: Use Cypress file paths
         run: |
