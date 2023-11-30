@@ -13,7 +13,6 @@ jobs:
           fetch-depth: 0
       
       - name: Identify Modified Support Folders
-        id: set-files
         run: |
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
@@ -22,19 +21,10 @@ jobs:
           echo "Changed files: $changed_files"
 
           # Append multi-line content to a file using the list of changed files
-          echo 'RESULT<<EOF' >> $GITHUB_ENV
+          echo 'Changed files:' >> $GITHUB_ENV
           for file in $changed_files; do
             echo "$file"
           done >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
 
-  display-changed-files:
-    needs: identify-folders
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Display Changed Files
-        run: |
-          echo "Changed files:"
+          # Display the content
           cat $GITHUB_ENV
-        working-directory: ${{ github.workspace }}
