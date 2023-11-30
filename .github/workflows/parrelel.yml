@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
           path: /home/runner/work/test/test/ui-test/cypress/support
       
       - name: Extract JS files
