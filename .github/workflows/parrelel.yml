@@ -6,6 +6,10 @@ jobs:
   identify-folders:
     runs-on: ubuntu-latest
 
+    outputs:
+      id: identify-folders-output
+      files: ${{ steps.set-files.outputs.files }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,7 +28,15 @@ jobs:
           # Set an environment variable with the list of changed files
           echo "CHANGED_FILES=${changed_files}" >> $GITHUB_ENV
 
+          # Set an output variable with the list of changed files
+          echo "::set-output name=files::${changed_files}"
+
+  display-changed-files:
+    needs: identify-folders
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Display Changed Files
         run: |
-          echo "Changed files: $CHANGED_FILES"
+          echo "Changed files: ${{ needs.identify-folders.outputs.files }}"
         working-directory: ${{ github.workspace }}
