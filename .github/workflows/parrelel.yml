@@ -1,6 +1,9 @@
 name: Identify Modified Support Folders
 
-on: push
+on:
+  pull_request:
+    paths:
+      - 'ui-test/**'
 
 jobs:
   identify-folders:
@@ -13,33 +16,18 @@ jobs:
           fetch-depth: 0
       
       - name: Identify Modified Support Folders
+        id: set-files
         run: |
           # Identify changed files between main and the push commit
           changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }})
-      
-          # Initialize an array to store JS files
-          js_files=()
-      
-          # Loop through each changed file
-          for file in $changed_files; do
-            # Check if the file has a ".js" extension
-            if [[ $file == *.js ]]; then
-              # Append the file to the array
-              js_files+=("$file")
-            fi
-          done
 
           # Debugging: Print the value of changed_files to the console
-          echo "Changed files: $js_files"
-      
-          # Set an environment variable with the list of changed JS files
-          echo "CHANGED_JS_FILES='${js_files[@]}'" >> $GITHUB_ENV
+          echo "Changed files: $changed_files"
 
-  display-changed-files:
-    needs: identify-folders
-    runs-on: ubuntu-latest
+          # Set an environment variable with the list of changed files
+          echo "CHANGED_FILES=${changed_files}" >> $GITHUB_ENV
 
-    steps:
       - name: Display Changed Files
         run: |
           echo "Changed files: $CHANGED_FILES"
+        working-directory: ${{ github.workspace }}
