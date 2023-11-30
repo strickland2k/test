@@ -25,8 +25,14 @@ jobs:
 
           echo "filtered files: $js_files"
 
-          # Save the multi-line content to an environment variable
-          echo "CHANGED_FILES=$js_files" >> $GITHUB_ENV
+          # Concatenate JS files into a single line
+          js_files_concatenated=$(echo "${js_files[*]}")
+
+          echo "Changed JS files:"
+          echo "$js_files_concatenated"
+
+          # Set environment variable for JS files
+          echo "JS_FILES=$js_files_concatenated" >> $GITHUB_ENV
 
       - name: Use the environment variable in another step
         run: |
