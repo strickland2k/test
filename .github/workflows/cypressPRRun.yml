@@ -98,22 +98,18 @@ jobs:
       - name: Generate HTML report
         working-directory: ui-test
         run: npm run report:generate
-        
-      - name: Get PR number
-        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-        
 
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: /__w/test/test/ui-test/public
-          destination_dir: pr/run-${PR_NUMBER}/
+          destination_dir: pr/run-${{ github.event.pull_request.number }}/
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-              https://strickland2k.github.io/test/pr/run-${PR_NUMBER}/
+              https://strickland2k.github.io/test/pr/run-${{ github.event.pull_request.number }}/
 
 
