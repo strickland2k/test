@@ -89,11 +89,7 @@ jobs:
 
       - name: Merge test results into one
         working-directory: ui-test
-        run: |
-
-          mkdir -p public
-        
-          npm run report:merge
+        run: npm run report:merge
 
       - name: Generate HTML report
         working-directory: ui-test
