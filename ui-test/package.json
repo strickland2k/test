@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "cypress": "^13.2.0",
+    "cypress": "^13.6.0",
     "cypress-parallel": "^0.13.0"
   },
   "devDependencies": {
@@ -19,6 +19,5 @@
     "reportPar:generate": "marge public/index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "cleanData": "rm -rf cypress/screenshots cypress/results cypress/reports cypress/videos reports public",
     "cypress:run": "npx cypress run --spec \"cypress/e2e/contentManager/*.cy.js\" --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json"
-
   }
 }

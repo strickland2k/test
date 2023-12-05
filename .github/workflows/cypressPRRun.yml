@@ -1,0 +1,117 @@
+name: Identify Modified Support Folders
+
+on: pull_request
+
+jobs:
+  cypress-pr-run:
+    if: contains(github.event.pull_request.labels.*.name, 'cypress')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Cypress dependencies
+        run: |
+          sudo apt update
+          sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      
+      - name: Extract JS files
+        id: extract_js
+        run: |
+          # Identify changed files between main and the push commit
+          changed_files=$(git diff --name-only origin/master ${{ github.event.before }} ${{ github.sha }} | tr '\n' ' ')
+
+          # Debugging: Print the value of changed_files to the console
+          echo "Changed files: $changed_files"
+
+          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | grep -v 'node_modules' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
+
+          echo "filtered files: $js_files"
+
+          # Save the multi-line content to an environment variable
+          echo "CHANGED_FILES=$js_files" >> $GITHUB_ENV
+
+      - name: Use the environment variable in another step
+        run: |
+          # Access the environment variable in another step
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+      - name: Build Cypress file paths
+        id: build_cypress_paths
+        run: |
+            # Split CHANGED_FILES string into an array
+            IFS=' ' read -ra files_array <<< "$CHANGED_FILES"
+        
+            # Access environment variable to build Cypress file paths
+            cypress_paths=""
+            for file_path in "${files_array[@]}"; do
+              cypress_path="${file_path%.*}/*.cy.js"
+              cypress_paths="$cypress_paths \"$cypress_path\""
+            done
+        
+            echo "Cypress file paths:"
+            echo "$cypress_paths"
+        
+            # Set environment variable for Cypress file paths
+            echo "CYPRESS_PATHS=$cypress_paths" >> $GITHUB_ENV
+            
+
+      - name: Use Cypress file paths
+        run: |
+          # Access environment variable for Cypress file paths in another step
+          echo "Using Cypress file paths: $CYPRESS_PATHS"
+
+      - name: Run Cypress tests
+        continue-on-error: true
+        working-directory: ui-test
+        run: |
+
+          npm install cypress --save --dev
+
+          npx cypress install
+
+          # Assuming file paths are stored as a single string
+          IFS=' ' read -ra TEST_FILES <<< "$CYPRESS_PATHS" # Split string into array
+          for file in "${TEST_FILES[@]}"; do
+            file="${file//\"/}" 
+            echo "Running Cypress test for $file"
+            npx cypress run --spec "**/$file" --reporter mocha-multi-reporters --reporter-options configFile=reporter-config.json
+          done
+        env:
+          CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
+          CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
+
+      - name: Copy test execution videos
+        working-directory: ui-test
+        run: |
+          mkdir public
+          cp -r /__w/test/test/ui-test/cypress/screenshots/ public/screenshots/
+
+      - name: Merge test results into one
+        working-directory: ui-test
+        run: npm run report:merge
+
+      - name: Generate HTML report
+        working-directory: ui-test
+        run: npm run report:generate
+        
+      - name: Get PR number
+        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+        
+
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /__w/test/test/ui-test/public
+          destination_dir: pr/run-${PR_NUMBER}/
+
+
