@@ -30,7 +30,7 @@ jobs:
           # Debugging: Print the value of changed_files to the console
           echo "Changed files: $changed_files"
 
-          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
+          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | grep -v 'node_modules' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
 
           echo "filtered files: $js_files"
 
@@ -87,4 +87,3 @@ jobs:
           CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
 
 
-          
