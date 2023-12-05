@@ -110,4 +110,10 @@ jobs:
           publish_dir: /__w/test/test/ui-test/public
           destination_dir: pr/run-${PR_NUMBER}/
 
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+              https://strickland2k.github.io/test/pr/run-${PR_NUMBER}/
+
 
