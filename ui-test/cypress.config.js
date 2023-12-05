@@ -20,10 +20,10 @@ module.exports = defineConfig({
     trashAssetsBeforeRuns: false,
     screenshotOnRunFailure: true,
     "video": false,
-      "retries":{
-        "runMode": 1,
-        "openMode": 1
-      },
+    "retries":{
+      "runMode": 1,
+      "openMode": 1
+    },
 
 
     setupNodeEvents(on, config) {
