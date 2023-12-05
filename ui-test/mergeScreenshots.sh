@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the paths
-videosFolder="cypress/screenshots"          # The folder where Cypress saves video recordings
-commonVideosFolder="public/screenshots"  # The common folder where you want to move the videos
+videosFolder="cypress/screenshots/"          # The folder where Cypress saves video recordings
+commonVideosFolder="public/screenshots/"  # The common folder where you want to move the videos
 
 # Ensure the common folder exists
 mkdir -p "$commonVideosFolder"
