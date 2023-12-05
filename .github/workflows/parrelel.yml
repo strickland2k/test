@@ -52,7 +52,7 @@ jobs:
             # Access environment variable to build Cypress file paths
             cypress_paths=""
             for file_path in "${files_array[@]}"; do
-              cypress_path="${file_path%.*}/*.cy.js"
+              cypress_path="${file_path%.*}/**/*.cy.js"
               cypress_paths="$cypress_paths \"$cypress_path\""
             done
         
