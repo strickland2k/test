@@ -83,22 +83,10 @@ jobs:
           CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
           CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
 
-      - name: Copy test execution screenshots
-        working-directory: ui-test
-        run: |
-
-          echo "Current directory is: $(pwd)"
-          echo "Directories in the current directory:"
-          ls -d */
-
-          cd cypress/
-
-          ls -d */
-        
-        
-          bash mergeScreenshots.sh
-
-
+      # - name: Copy test execution screenshots
+      #   working-directory: ui-test
+      #   run: bash mergeScreenshots.sh
+      
       - name: Merge test results into one
         working-directory: ui-test
         run: npm run report:merge
