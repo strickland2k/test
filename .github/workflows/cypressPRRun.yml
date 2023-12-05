@@ -68,6 +68,10 @@ jobs:
         working-directory: ui-test
         run: |
 
+          echo "Current directory is: $(pwd)"
+          echo "Directories in the current directory:"
+          ls -d */
+
           npm install cypress --save --dev
 
           npx cypress install
