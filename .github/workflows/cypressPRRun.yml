@@ -87,7 +87,7 @@ jobs:
         working-directory: ui-test
         run: |
           mkdir public
-          cp -r /home/runner/test/test/ui-test/cypress/screenshots/ public/screenshots/
+          cp -r /home/runner/work/test/test/ui-test/cypress/screenshots/ public/screenshots/
 
       - name: Merge test results into one
         working-directory: ui-test
