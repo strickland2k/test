@@ -19,9 +19,6 @@ module.exports = defineConfig({
     baseUrl: "https://example.cypress.io/todo",
     trashAssetsBeforeRuns: false,
     screenshotOnRunFailure: true,
-
-
-    "video": true,
       "retries":{
         "runMode": 1,
         "openMode": 1
