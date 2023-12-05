@@ -13,6 +13,7 @@
   },
   "scripts": {
     "test:chrome": "cypress run --browser chrome",
+    "report": "npm run report:merge && npm run report:generate",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > public/index.json",
     "report:generate": "marge public/index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "reportPar:merge": "mochawesome-merge cypress/results/json/*/*.json > public/index.json",

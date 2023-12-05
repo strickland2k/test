@@ -22,8 +22,22 @@ registerCypressGrep()
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
-})
+
+import addContext from 'mochawesome/addContext'
+
+Cypress.on('test:after:run', (test, runnable) => {
+  if (test.state === 'failed') {
+    const testHierarchy = getTestHierarchy(runnable);
+    const cleanedHierarchy = testHierarchy.filter((title, index, self) => self.indexOf(title) === index);
+    const fullTestName = cleanedHierarchy.join(' -- ');
+
+    // Remove the "<smoke>" tag from the context
+    const fullTestNameWithoutSmoke = fullTestName.replace(' <smoke>', '');
+
+    const MAX_SPEC_NAME_LENGTH = 220;
+    const fullTestNameTruncated = fullTestNameWithoutSmoke.slice(0, MAX_SPEC_NAME_LENGTH);
+
+    const imageUrl = `screenshots/${fullTestNameTruncated} (failed) (attempt 2).png`;
+    addContext({ test }, imageUrl);
+  }
+});
