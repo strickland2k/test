@@ -31,7 +31,7 @@ jobs:
           # Debugging: Print the value of changed_files to the console
           echo "Changed files: $changed_files"
 
-          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | grep -v 'node_modules' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
+          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | grep -v 'node_modules' | grep -vE 'e2e.js' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
 
           echo "filtered files: $js_files"
 
@@ -68,10 +68,6 @@ jobs:
         working-directory: ui-test
         run: |
 
-          echo "Current directory is: $(pwd)"
-          echo "Directories in the current directory:"
-          ls -d */
-
           npm install cypress --save --dev
 
           npx cypress install
@@ -89,7 +85,18 @@ jobs:
 
       - name: Copy test execution screenshots
         working-directory: ui-test
-        run: bash mergeScreenshots.sh
+        run: |
+
+          echo "Current directory is: $(pwd)"
+          echo "Directories in the current directory:"
+          ls -d */
+
+          cd cypress/
+
+          ls -d */
+        
+        
+          bash mergeScreenshots.sh
 
 
       - name: Merge test results into one
