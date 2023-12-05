@@ -75,6 +75,8 @@ jobs:
 
           npm install cypress --save --dev
 
+          npx cypress install
+
           # Assuming file paths are stored as a single string
           IFS=' ' read -ra TEST_FILES <<< "$CYPRESS_PATHS" # Split string into array
           for file in "${TEST_FILES[@]}"; do
