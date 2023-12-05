@@ -83,11 +83,10 @@ jobs:
           CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
           CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
 
-      - name: Copy test execution videos
+      - name: Copy test execution screenshots
         working-directory: ui-test
-        run: |
-          mkdir public
-          cp -r /home/runner/work/test/test/ui-test/cypress/screenshots/ public/screenshots/
+        run: bash mergeScreenshots.sh
+
 
       - name: Merge test results into one
         working-directory: ui-test
