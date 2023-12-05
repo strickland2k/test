@@ -38,12 +38,6 @@ jobs:
           # Save the multi-line content to an environment variable
           echo "CHANGED_FILES=$js_files" >> $GITHUB_ENV
 
-      - name: Use the environment variable in another step
-        run: |
-          # Access the environment variable in another step
-          echo "Changed files:"
-          echo "$CHANGED_FILES"
-
       - name: Build Cypress file paths
         id: build_cypress_paths
         run: |
@@ -93,7 +87,7 @@ jobs:
         working-directory: ui-test
         run: |
           mkdir public
-          cp -r /__w/test/test/ui-test/cypress/screenshots/ public/screenshots/
+          cp -r /home/runner/test/test/ui-test/cypress/screenshots/ public/screenshots/
 
       - name: Merge test results into one
         working-directory: ui-test
