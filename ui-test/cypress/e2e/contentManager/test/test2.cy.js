@@ -11,5 +11,6 @@ describe('BEANS', () => {
 
     it('BEAN3', () => {
         cy.log(10)
+        cy.get('.todo-list li').should('have.length', 10)
     })
   })
