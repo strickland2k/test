@@ -1,9 +1,10 @@
 name: Identify Modified Support Folders
 
-on: push
+on: pull_request
 
 jobs:
-  identify-folders:
+  cypress-pr-run:
+    if: contains(github.event.pull_request.labels.*.name, 'cypress')
     runs-on: ubuntu-latest
 
     steps:
@@ -87,5 +88,30 @@ jobs:
         env:
           CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
           CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
+
+      - name: Copy test execution videos
+        working-directory: ui-test
+        run: |
+          mkdir public
+          cp -r /__w/test/test/ui-test/cypress/videos/ public/videos/
+
+      - name: Merge test results into one
+        working-directory: ui-test
+        run: npm run report:merge
+
+      - name: Generate HTML report
+        working-directory: ui-test
+        run: npm run report:generate
+        
+      - name: Get PR number
+        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+        
+
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /__w/test/test/ui-test/public
+          destination_dir: pr/run-${PR_NUMBER}/
 
 
