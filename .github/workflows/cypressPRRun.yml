@@ -86,10 +86,14 @@ jobs:
       # - name: Copy test execution screenshots
       #   working-directory: ui-test
       #   run: bash mergeScreenshots.sh
-      
+
       - name: Merge test results into one
         working-directory: ui-test
-        run: npm run report:merge
+        run: |
+
+          mkdir -p public
+        
+          npm run report:merge
 
       - name: Generate HTML report
         working-directory: ui-test
