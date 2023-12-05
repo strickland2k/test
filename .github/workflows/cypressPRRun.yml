@@ -103,7 +103,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /__w/test/test/ui-test/public
+          publish_dir: /home/runner/work/test/test/ui-test/public
           destination_dir: pr/run-${{ github.event.pull_request.number }}/
 
       - name: Comment PR
