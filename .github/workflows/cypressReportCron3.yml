@@ -1,8 +1,6 @@
 # action.yml
 name: Daily Staging Testrun
-on: 
-  schedule:
-    - cron: '0 2 * * *'
+on: push
 
 
 jobs:
