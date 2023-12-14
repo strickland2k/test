@@ -1,8 +1,6 @@
 # action.yml
 name: Daily QA Testrun
-on: 
-  schedule:
-    - cron: '0 0 * * *'
+on: push
 
 
 jobs:
