@@ -1,0 +1,42 @@
+name: e2e-tests-forte
+description: Run e2e tests for Forte.
+
+inputs:
+  workspace:
+    description: The name of the Xcode workspace.
+    required: true
+  scheme:
+    description: The Xcode scheme to build.
+    required: true
+  results-bundle-name:
+    description: Name for the xcresults bundle
+    required: true
+  test-machine-name:
+    description: The name of the test machine.
+    required: true
+
+outputs:
+  result-bundle:
+    description: The path to the xcresults file.
+    value: ${{ steps.run-test.outputs.RESULT_BUNDLE }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: run-test
+      env:
+        SCHEME: ${{ inputs.scheme }}
+        TEST_TARGET: ${{ inputs.results-bundle-name }}
+      run: |
+        RESULT_BUNDLE="$(mktemp -d)/$TEST_TARGET.xcresult"
+
+        echo "RESULT_BUNDLE=$RESULT_BUNDLE" >> "$GITHUB_OUTPUT"
+
+        xcodebuild \
+        test \
+        -testMachine "$TEST_MACHINE_NAME" \
+        -scheme "$SCHEME" \
+        -resultBundlePath "$RESULT_BUNDLE" \
+        | xcpretty --no-skip
+   
+      shell: bash
