@@ -28,7 +28,7 @@ runs:
 
         xcodebuild \
         test \
-        -workspace XCTestHTMLReport.xcworkspace
+        -workspace XCTestHTMLReport.xcworkspace \
         -scheme "$SCHEME" \
         -resultBundlePath "$RESULT_BUNDLE" \
         | xcpretty
