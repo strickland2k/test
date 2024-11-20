@@ -2,6 +2,9 @@ name: e2e-tests-forte
 description: Run e2e tests for Forte.
 
 inputs:
+  test-plan:
+    description: 'Test plan to run'
+    required: true
   scheme:
     description: The Xcode scheme to build.
     required: true
@@ -21,6 +24,7 @@ runs:
       env:
         SCHEME: ${{ inputs.scheme }}
         TEST_TARGET: ${{ inputs.results-bundle-name }}
+        TEST_PLAN: ${{ inputs.test-plan }}
       run: |
         RESULT_BUNDLE="$(mktemp -d)/$TEST_TARGET.xcresult"
 
@@ -28,11 +32,10 @@ runs:
 
         xcodebuild \
         test \
-        -workspace XCTestHTMLReport.xcworkspace \
         -scheme "$SCHEME" \
+        -testPlan "$TEST_PLAN" \
         -resultBundlePath "$RESULT_BUNDLE" \
         | xcpretty
    
       shell: bash
-
       
