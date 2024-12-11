@@ -31,18 +31,12 @@ jobs:
           # Debugging: Print the value of changed_files to the console
           echo "Changed files: $changed_files"
 
-          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | grep -v 'node_modules' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
+          js_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.js$' | grep -vE '\.cy\.js$' | grep -v 'node_modules' | grep -vE 'e2e.js' | sed 's|.*/\([^/]*\)\.js|\1|' | tr '\n' ' ')
 
           echo "filtered files: $js_files"
 
           # Save the multi-line content to an environment variable
           echo "CHANGED_FILES=$js_files" >> $GITHUB_ENV
-
-      - name: Use the environment variable in another step
-        run: |
-          # Access the environment variable in another step
-          echo "Changed files:"
-          echo "$CHANGED_FILES"
 
       - name: Build Cypress file paths
         id: build_cypress_paths
@@ -89,11 +83,9 @@ jobs:
           CYPRESS_username: ${{secrets.CYPRESS_USERNAME}}
           CYPRESS_password: ${{secrets.CYPRESS_PASSWORD}}
 
-      - name: Copy test execution videos
+      - name: Copy test execution screenshots
         working-directory: ui-test
-        run: |
-          mkdir public
-          cp -r /__w/test/test/ui-test/cypress/screenshots/ public/screenshots/
+        run: bash mergeScreenshots.sh
 
       - name: Merge test results into one
         working-directory: ui-test
@@ -102,16 +94,18 @@ jobs:
       - name: Generate HTML report
         working-directory: ui-test
         run: npm run report:generate
-        
-      - name: Get PR number
-        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-        
 
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /__w/test/test/ui-test/public
-          destination_dir: pr/run-${PR_NUMBER}/
+          publish_dir: /home/runner/work/test/test/ui-test/public
+          destination_dir: pr/run-${{ github.event.pull_request.number }}/
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+              https://strickland2k.github.io/test/pr/run-${{ github.event.pull_request.number }}/
 
 
